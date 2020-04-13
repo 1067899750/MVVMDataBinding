@@ -42,7 +42,6 @@ dependencies {
 
     //arouter
     api rootProject.ext.dependencies.arouter
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     //banner 现无限轮询
     api rootProject.ext.dependencies.banner
     //cardview
@@ -53,6 +52,8 @@ dependencies {
     //SmartRefreshLayout
     api rootProject.ext.dependencies.SmartRefreshLayout
     api rootProject.ext.dependencies.SmartRefreshHeader
+    //badgeview 角标数字提醒
+    api rootProject.ext.dependencies.badgeview
 }
 
 
