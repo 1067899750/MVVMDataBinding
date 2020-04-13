@@ -10,6 +10,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/moduleCore" />
+            <option value="$PROJECT_DIR$/moduleCore/z_module_news" />
+            <option value="$PROJECT_DIR$/modulePublic" />
+            <option value="$PROJECT_DIR$/modulePublic/z_lib_common" />
+            <option value="$PROJECT_DIR$/moduleSystem" />
+            <option value="$PROJECT_DIR$/moduleSystem/z_lib_base" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

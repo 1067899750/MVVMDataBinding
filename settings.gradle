@@ -1,2 +1,5 @@
 rootProject.name='DataBinding'
 include ':app'
+include ':modulePublic:z_lib_common'
+include ':moduleSystem:z_lib_base'
+include ':moduleCore:z_module_news'

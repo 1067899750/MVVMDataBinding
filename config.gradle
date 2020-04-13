@@ -1,0 +1,86 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
+            applicationId    : "com.example.databinding",
+            minSdkVersion    : 15,
+            targetSdkVersion : 28,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+    //version配置
+    versions = [
+            "support-version"    : "28.0.0",
+            "junit-version"      : "4.12",
+            "constration-version": "1.1.3",
+            "androidXVersion"    : "1.0.0",
+    ]
+
+    //support配置
+    support = [
+            "constraint-layout"       : "androidx.constraintlayout:constraintlayout:${versions["constration-version"]}",
+            "appcompat"               : "androidx.appcompat:appcompat:${versions["androidXVersion"]}",
+            "recyclerview"            : "androidx.recyclerview:recyclerview:${versions["androidXVersion"]}",
+            "cardview"                : "androidx.cardview:cardview:${versions["androidXVersion"]}",
+            "material-design"         : "com.google.android.material:material:${versions["androidXVersion"]}",
+
+            'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
+
+
+            'support-v4'              : "com.android.support:support-v4:${versions["support-version"]}",
+            'support-v13'             : "com.android.support:support-v13:${versions["support-version"]}",
+            'support-fragment'        : "com.android.support:support-fragment:${versions["support-version"]}",
+            'design'                  : "com.android.support:design:${versions["support-version"]}",
+            'animated-vector-drawable': "com.android.support:animated-vector-drawable:${versions["support-version"]}",
+            'junit'                   : "junit:junit:${versions["junit-version"]}",
+    ]
+    //依赖第三方配置
+    dependencies = [
+            //json解析
+            "gson"                                 : "com.google.code.gson:gson:2.8.5",
+            //Lottie是Airbnb开源的一个支持 Android、iOS 以及 ReactNative，利用json文件的方式快速实现动画效果的库
+            "lottie"                               : "com.airbnb.android:lottie:2.8.0",
+            //rxjava
+            "rxjava"                               : "io.reactivex.rxjava2:rxjava:2.2.3",
+            "rxandroid"                            : "io.reactivex.rxjava2:rxandroid:2.1.0",
+            //loadsir 加载缺省页
+            "loadsir"                              : "com.kingja.loadsir:loadsir:1.3.6",
+            //阿里路由
+            "arouter"                              : 'com.alibaba:arouter-api:1.4.1',
+            "arouter-compiler"                     : 'com.alibaba:arouter-compiler:1.2.2',
+            //banner 现无限轮询
+            "banner"                               : "com.youth.banner:banner:1.4.10",
+            //glide图片加载
+            "glide"                                : "com.github.bumptech.glide:glide:4.8.0",
+            "glide-compiler"                       : "com.github.bumptech.glide:compiler:4.8.0",
+            //SmartRefreshLayout
+            "SmartRefreshLayout"                   : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-7",
+            //没有使用特殊Header，可以不加这行
+            "SmartRefreshHeader"                   : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7",
+
+
+            //rx系列与View生命周期同步
+            "rxlifecycle"                          : "com.trello.rxlifecycle2:rxlifecycle:2.2.2",
+            "rxlifecycle-components"               : "com.trello.rxlifecycle2:rxlifecycle-components:2.2.2",
+            //rxbinding
+            "rxbinding"                            : "com.jakewharton.rxbinding2:rxbinding:2.1.1",
+            //rx 6.0权限请求
+            "rxpermissions"                        : "com.github.tbruyelle:rxpermissions:0.10.2",
+            //network
+            "okhttp"                               : "com.squareup.okhttp3:okhttp:3.10.0",
+            "retrofit"                             : "com.squareup.retrofit2:retrofit:2.4.0",
+            "converter-gson"                       : "com.squareup.retrofit2:converter-gson:2.4.0",
+            "adapter-rxjava"                       : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
+            //material-dialogs
+            "material-dialogs-core"                : "com.afollestad.material-dialogs:core:0.9.4.5",
+            "material-dialogs-commons"             : "com.afollestad.material-dialogs:commons:0.9.4.5",
+            //recyclerview的databinding套装
+            "bindingcollectionadapter"             : "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0",
+            "bindingcollectionadapter-recyclerview": "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0",
+            //Google AAC
+            "lifecycle-extensions"                 : "android.arch.lifecycle:extensions:1.1.1",
+            "lifecycle-compiler"                   : "android.arch.lifecycle:compiler:1.1.1",
+
+    ]
+}
