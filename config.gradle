@@ -14,7 +14,8 @@ ext {
             "support-version"    : "28.0.0",
             "junit-version"      : "4.12",
             "constration-version": "1.1.3",
-            "androidXVersion"    : "1.0.0",
+            "androidXVersion"    : "1.1.0",
+            "cardview"           : "1.0.0",
     ]
 
     //support配置
@@ -22,7 +23,7 @@ ext {
             "constraint-layout"       : "androidx.constraintlayout:constraintlayout:${versions["constration-version"]}",
             "appcompat"               : "androidx.appcompat:appcompat:${versions["androidXVersion"]}",
             "recyclerview"            : "androidx.recyclerview:recyclerview:${versions["androidXVersion"]}",
-            "cardview"                : "androidx.cardview:cardview:${versions["androidXVersion"]}",
+            "cardview"                : "androidx.cardview:cardview:${versions["cardview"]}",
             "material-design"         : "com.google.android.material:material:${versions["androidXVersion"]}",
 
             'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
@@ -60,6 +61,8 @@ ext {
             "SmartRefreshHeader"                   : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-7",
             //badgeview 角标数字提醒
             "badgeview"                            : "q.rorbin:badgeview:1.1.3",
+            //logger
+            "logger"                               : 'com.orhanobut:logger:2.2.0',
 
             //rx系列与View生命周期同步
             "rxlifecycle"                          : "com.trello.rxlifecycle2:rxlifecycle:2.2.2",

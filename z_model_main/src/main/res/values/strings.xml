@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="main_menu_home">头条</string>
+    <string name="main_menu_area">地区</string>
+    <string name="main_menu_services">服务</string>
+    <string name="main_menu_user">我的</string>
+    <string name="main_share">分享</string>
+</resources>
