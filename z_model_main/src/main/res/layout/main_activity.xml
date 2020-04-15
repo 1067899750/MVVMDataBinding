@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="MainActivityBinding">
-
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.z_model_main.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

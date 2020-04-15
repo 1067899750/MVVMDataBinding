@@ -12,12 +12,9 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //这是为了让ARouter知道这个模块用来区分其他模块的名字是什么，不然报错
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
-            }
-        }
+
+        //添加多 dex分包支持
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -47,7 +44,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    //分包
+    api rootProject.ext.dependencies.multidex
     if (!isModule.toBoolean()) {
         implementation project(path: ':moduleCore:z_module_news')
         implementation project(path: ':moduleCore:z_module_service')
@@ -55,7 +53,6 @@ dependencies {
         implementation project(path: ':moduleCore:z_module_user')
     }
 
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     implementation project(path: ':z_model_main')
     implementation project(path: ':modulePublic:z_lib_common')
 

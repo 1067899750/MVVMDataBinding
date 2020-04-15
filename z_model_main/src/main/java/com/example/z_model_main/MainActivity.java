@@ -7,6 +7,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import q.rorbin.badgeview.QBadgeView;
 
 import android.annotation.SuppressLint;
@@ -17,7 +19,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.z_lib_common.arouter.ARouterManager;
+import com.example.z_lib_base.base.BaseMVVMActivity;
+import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_common.arouter.ARouterUtils;
 import com.example.z_model_main.databinding.MainActivityBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
@@ -33,15 +36,29 @@ import java.util.ArrayList;
  * @description
  * @date 2020/4/14 9:13
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseMVVMActivity<MainActivityBinding, BaseViewModel> {
     private ArrayList<String> mFragments;
     private int mPosition = 0;
-    private MainActivityBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.main_activity);
+    public int initContentView(Bundle savedInstanceState) {
+        return R.layout.main_activity;
+    }
+
+    @Override
+    public int initVariableId() {
+        return BR.viewModel;
+    }
+
+    @Override
+    public BaseViewModel initViewModel() {
+        //使用自定义的ViewModelFactory来创建ViewModel，如果不重写该方法，
+        // 则默认会调用LoginViewModel(@NonNull Application application)构造方法
+        return ViewModelProviders.of(this).get(MainViewModel.class);
+    }
+
+    @Override
+    public void initData() {
         mFragments = new ArrayList<>();
         mFragments.add(ARouterUtils.NEWS_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.AREA_MAIN_FRAGMENT);
@@ -63,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
             disableShiftMode(binding.bottomView);
         }
 
+
+        binding.bottomView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        showBadgeView(3, 5);
+    }
+
+    @Override
+    public void initViewObservable() {
         binding.bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -85,9 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        binding.bottomView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-        showBadgeView(3, 5);
-
     }
 
     /**

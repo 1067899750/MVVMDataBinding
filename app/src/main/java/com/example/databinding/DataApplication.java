@@ -1,8 +1,12 @@
 package com.example.databinding;
 
+import android.content.Context;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.z_lib_base.base.BaseApplication;
 import com.example.z_lib_base.untils.CommonUtils;
+
+import androidx.multidex.MultiDex;
 
 /**
  * @author puyantao
@@ -22,6 +26,14 @@ public class DataApplication extends BaseApplication {
 
 
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // dex突破65535的限制
+        MultiDex.install(this);
+    }
+
 }
 
 
