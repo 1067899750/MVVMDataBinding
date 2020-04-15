@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
 
     <data class="PictureTitleViewBinding">
 
         <import type="android.view.View" />
 
         <import type="android.text.TextUtils" />
+
+        <import type="com.example.z_lib_common.R" />
 
         <import type="androidx.databinding.ObservableField" />
 
@@ -29,23 +32,21 @@
             android:padding="16dp">
 
             <androidx.cardview.widget.CardView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                card_view:cardBackgroundColor="@android:color/transparent"
-                card_view:cardCornerRadius="5dp"
-                card_view:cardElevation="0dp"
-                card_view:contentPadding="0dp">
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp"
+                app:contentPadding="0dp">
 
                 <ImageView
                     android:id="@+id/item_image"
                     android:layout_width="100dp"
                     android:layout_height="70dp"
                     android:scaleType="fitXY"
-                    app:imageUrl="@{viewModel.avatarUrl}" />
+                    binding:imageUrl="@{viewModel.avatarUrl}"
+                    binding:placeholderRes="@{R.drawable.life_photo_detail_empty}" />
             </androidx.cardview.widget.CardView>
 
             <TextView

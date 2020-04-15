@@ -11,7 +11,7 @@
 
     <attr name="onScrollChangeCommand" format="reference" />
     <attr name="onScrollStateChangedCommand" format="reference" />
-    <attr name="url" format="string" />
+    <attr name="imageUrl" format="string" />
     <attr name="onTouchCommand" format="reference" />
 
     <!-- require BindingCommand {@link com.kelin.mvvmlight.command.BindingCommand } to deal with view click event. -->
@@ -71,7 +71,7 @@
 
     <declare-styleable name="ImageView">
         <!--  load bitmap from uri(string type) -->
-        <attr name="url" />
+        <attr name="imageUrl" />
         <!--width for ResizeOptions (use Fresco to load bitmap). -->
         <attr name="request_width" format="integer" />
         <!--height for ResizeOptions (use Fresco to load bitmap). -->
@@ -144,9 +144,9 @@
         <attr name="onScrollChangeCommand" />
     </declare-styleable>
 
-    <declare-styleable name="SimpleDraweeView">
+    <declare-styleable name="SimpleDrawerView">
         <!-- require String to load Image"-->
-        <attr name="url" />
+        <attr name="imageUrl" />
     </declare-styleable>
 
     <declare-styleable name="ScrollView">
