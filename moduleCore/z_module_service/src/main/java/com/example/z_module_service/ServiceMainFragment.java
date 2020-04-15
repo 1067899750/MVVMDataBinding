@@ -2,6 +2,7 @@ package com.example.z_module_service;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -9,7 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.z_lib_base.base.BaseMVVMFragment;
+import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_common.arouter.ARouterUtils;
+import com.example.z_module_service.databinding.ServiceMainFragmentBinding;
 
 
 /**
@@ -19,7 +23,7 @@ import com.example.z_lib_common.arouter.ARouterUtils;
  * @date 2020/4/14 14:07
  */
 @Route(path = ARouterUtils.SERVICE_MAIN_FRAGMENT)
-public class ServiceMainFragment extends Fragment {
+public class ServiceMainFragment extends BaseMVVMFragment<ServiceMainFragmentBinding, BaseViewModel> {
 
     public ServiceMainFragment() {
     }
@@ -32,16 +36,17 @@ public class ServiceMainFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
+    public void initParam() {
+        super.initParam();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.service_fragment_main, container, false);
+    public int initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return R.layout.service_fragment_main;
+    }
+
+    @Override
+    public int initVariableId() {
+        return 0;
     }
 }

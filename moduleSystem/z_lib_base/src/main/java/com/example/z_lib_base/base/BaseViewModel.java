@@ -3,6 +3,7 @@ package com.example.z_lib_base.base;
 import android.app.Application;
 import android.os.Bundle;
 
+
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.intercepter.IBaseViewModel;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -23,24 +24,23 @@ import io.reactivex.functions.Consumer;
 
 /**
  * @author puyantao
- * @describe
- * @create 2020/4/14 16:19
+ * @description
+ * @date 2020/4/15 16:18
  */
-
 public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IBaseViewModel, Consumer<Disposable> {
-    private M model;
+    protected M model;
+    private UIChangeLiveData uc;
     /**
      * 弱引用持有
      */
     private WeakReference<LifecycleProvider> lifecycle;
-    private UIChangeLiveData uc;
     /**
      * 管理RxJava，主要针对RxJava异步操作造成的内存泄漏
      */
     private CompositeDisposable mCompositeDisposable;
 
     public BaseViewModel(@NonNull Application application) {
-        super(application);
+        this(application, null);
     }
 
     public BaseViewModel(@NonNull Application application, M model) {
@@ -69,62 +69,53 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         return lifecycle.get();
     }
 
-    public UIChangeLiveData getUC(){
-        if (uc == null){
+    public UIChangeLiveData getUC() {
+        if (uc == null) {
             uc = new UIChangeLiveData();
         }
         return uc;
     }
 
-
     @Override
     public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
-
     }
 
     @Override
     public void onCreate() {
-
     }
 
     @Override
     public void onDestroy() {
-
     }
 
     @Override
     public void onStart() {
-
     }
 
     @Override
     public void onStop() {
-
     }
 
     @Override
     public void onResume() {
-
     }
 
     @Override
     public void onPause() {
-
     }
 
     @Override
     public void registerRxBus() {
-
     }
 
     @Override
     public void removeRxBus() {
-
     }
 
     @Override
-    public void accept(Disposable disposable) {
-        if (model != null){
+    protected void onCleared() {
+        super.onCleared();
+        if (model != null) {
             model.onCleared();
         }
         //ViewModel销毁时会执行，同时取消所有异步任务
@@ -133,8 +124,13 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         }
     }
 
+    @Override
+    public void accept(Disposable disposable) throws Exception {
+        addSubscribe(disposable);
+    }
 
-    public void showDialog(){
+
+    public void showDialog() {
         showDialog("请稍后...");
     }
 
@@ -142,14 +138,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         uc.showDialogEvent.postValue(title);
     }
 
-    public void dismissDialog(){
+    public void dismissDialog() {
         uc.dismissDialogEvent.call();
     }
-
-    public void showToastDialog(String data) {
-        uc.showToastDialogEvent.postValue(data);
-    }
-
 
     /**
      * 跳转页面
@@ -169,13 +160,11 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     public void startActivity(Class<?> clz, Bundle bundle) {
         Map<String, Object> params = new HashMap<>();
         params.put(ParameterField.CLASS, clz);
-        if (bundle != null){
+        if (bundle != null) {
             params.put(ParameterField.BUNDLE, bundle);
         }
         uc.startActivityEvent.postValue(params);
     }
-
-
 
     /**
      * 跳转容器页面
@@ -186,8 +175,6 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         startContainerActivity(canonicalName, null);
     }
 
-
-
     /**
      * 跳转容器页面
      *
@@ -197,7 +184,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     public void startContainerActivity(String canonicalName, Bundle bundle) {
         Map<String, Object> params = new HashMap<>();
         params.put(ParameterField.CANONICAL_NAME, canonicalName);
-        if (bundle != null){
+        if (bundle != null) {
             params.put(ParameterField.BUNDLE, bundle);
         }
         uc.startContainerActivityEvent.postValue(params);
@@ -206,10 +193,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
     /**
      * 关闭界面
      */
-    public void finish(){
+    public void finish() {
         uc.finishEvent.call();
     }
-
 
     /**
      * 返回上一层
@@ -256,7 +242,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         }
 
         private <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
-            if (liveData == null){
+            if (liveData == null) {
                 liveData = new SingleLiveEvent<>();
             }
             return liveData;
@@ -268,27 +254,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         }
     }
 
-
     public static final class ParameterField {
         public static String CLASS = "CLASS";
         public static String CANONICAL_NAME = "CANONICAL_NAME";
         public static String BUNDLE = "BUNDLE";
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

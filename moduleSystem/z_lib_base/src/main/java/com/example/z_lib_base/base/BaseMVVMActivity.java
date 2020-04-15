@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.z_lib_base.bus.Messenger;
 import com.example.z_lib_base.intercepter.IBaseView;
 import com.example.z_lib_base.widget.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
@@ -54,7 +55,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
     protected void onDestroy() {
         super.onDestroy();
         //解除Messenger注册
-//        Messenger.getDefault().unregister(viewModel);
+        Messenger.getDefault().unregister(viewModel);
         if (viewModel != null){
             viewModel.registerRxBus();
         }
@@ -81,8 +82,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
             } else {
                 //如果没有指定泛型参数，则默认使用BaseViewModel
                 modelClass = BaseViewModel.class;
-            }
-//            viewModel = (VM) ViewModelProviders.of(this).get(modelClass);
+            };
             viewModel = (VM) createViewModel(this, modelClass);
         }
         //关联ViewModel
@@ -271,7 +271,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
     }
 
     /**
-     * 创建ViewModel
+     * 创建ViewModel, 重写该方法新构建初始化数据, 不重新构建默认传入的 ViewModel
      *
      * @param cls
      * @param <T>

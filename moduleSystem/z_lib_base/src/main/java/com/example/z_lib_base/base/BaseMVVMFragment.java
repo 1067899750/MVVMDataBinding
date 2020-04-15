@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.z_lib_base.bus.Messenger;
 import com.example.z_lib_base.intercepter.IBaseView;
 import com.example.z_lib_base.widget.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -59,7 +60,7 @@ public abstract class BaseMVVMFragment<V extends ViewDataBinding, VM extends Bas
     public void onDestroyView() {
         super.onDestroyView();
         //解除Messenger注册
-//        Messenger.getDefault().unregister(viewModel);
+        Messenger.getDefault().unregister(viewModel);
         if (viewModel != null) {
             viewModel.removeRxBus();
         }
@@ -287,7 +288,7 @@ public abstract class BaseMVVMFragment<V extends ViewDataBinding, VM extends Bas
     }
 
     /**
-     * 创建ViewModel
+     * 创建ViewModel, 重写该方法新构建初始化数据, 不重新构建默认传入的 ViewModel
      *
      * @param cls
      * @param <T>

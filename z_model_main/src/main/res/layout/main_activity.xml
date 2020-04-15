@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="MainActivityBinding">
@@ -26,7 +27,7 @@
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:contentInsetStartWithNavigation="0dp"/>
+                app:contentInsetStartWithNavigation="0dp" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +46,9 @@
             app:layout_behavior="com.example.z_lib_common.widget.BottomNavigationBehavior"
             app:menu="@menu/main_tab_menu"
             app:itemTextColor="@color/main_tab_selected_color"
-            app:itemIconTint="@color/main_tab_selected_color"/>
+            app:itemIconTint="@color/main_tab_selected_color"
+
+            binding:onNavigationItemSelected="@{viewModel.onNavigationChangeCommand}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
