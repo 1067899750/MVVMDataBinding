@@ -30,4 +30,5 @@ public class PictureTitleView extends BaseCustomView<PictureTitleViewBinding, Pi
     @Override
     public void onRootClick(View view) {
     }
+
 }
