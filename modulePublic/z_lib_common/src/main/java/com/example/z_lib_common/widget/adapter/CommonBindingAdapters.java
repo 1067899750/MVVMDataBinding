@@ -12,8 +12,10 @@ import androidx.databinding.BindingAdapter;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 /**
- * Created by Allen on 2017/7/20.
- * 保留所有版权，未经允许请不要分享到互联网和其他人
+ *
+ * @description 设置Glide加载ImageView的图片
+ * @author puyantao
+ * @date 2020/4/15 17:36
  */
 public class CommonBindingAdapters {
 
