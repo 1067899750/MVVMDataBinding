@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //分包
-    api rootProject.ext.dependencies.multidex
+    implementation rootProject.ext.dependencies.multidex
     if (!isModule.toBoolean()) {
         implementation project(path: ':moduleCore:z_module_news')
         implementation project(path: ':moduleCore:z_module_service')
