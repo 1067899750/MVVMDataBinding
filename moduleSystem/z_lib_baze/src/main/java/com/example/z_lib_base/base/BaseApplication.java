@@ -29,7 +29,6 @@ public class BaseApplication extends Application {
         super.onCreate();
         sInstance = this;
         CommonUtils.init(this);
-
     }
 
     @Override

@@ -2,9 +2,12 @@ package com.example.z_module_news.app;
 
 import com.example.z_module_news.headlinenews.NewsChannelsBean;
 
+import java.util.Map;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 /**
  * 
@@ -13,6 +16,6 @@ import retrofit2.http.Query;
  * @date 2020/4/16 10:03
  */
 public interface NewsApiInterface {
-    @GET("release/channel")
-    Observable<NewsChannelsBean> getNewsChannels();
+    @GET("mobile/login.htm")
+    Observable<Object> getLoginInfo(@QueryMap Map<String, String> map);
 }

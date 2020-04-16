@@ -11,6 +11,7 @@ import com.example.z_lib_base.untils.CommonUtils;
 import com.example.z_lib_common.bankres.ConfigPermission;
 import com.example.z_lib_common.multipackage.EnvType;
 import com.example.z_lib_net.base.NetworkApi;
+import com.example.z_lib_net.untils.NetUtils;
 
 import androidx.multidex.MultiDex;
 
@@ -34,7 +35,7 @@ public class DataApplication extends BaseApplication {
             ARouter.openLog();
         }
         ARouter.init(this);
-        NetworkApi.init(new NetworkRequestInfo(this));
+        NetUtils.init(this, getResources().getString(R.string.base_url));
 
         //初始化多环境打包
         initMultiPackage();

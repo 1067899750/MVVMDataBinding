@@ -1,10 +1,12 @@
 package com.example.z_lib_net.base;
 
-
-import com.example.z_lib_net.environment.IEnvironment;
+import com.example.z_lib_net.dns.OKHttpDns;
+import com.example.z_lib_net.dns.OkDns;
 import com.example.z_lib_net.error.HttpErrorHandler;
-import com.example.z_lib_net.intercepter.CommonRequestInterceptor;
-import com.example.z_lib_net.intercepter.CommonResponseInterceptor;
+import com.example.z_lib_net.intercepter.AddSsionInterceptor;
+import com.example.z_lib_net.intercepter.GzipRequestInterceptor;
+import com.example.z_lib_net.intercepter.ReadCookiesInterceptor;
+import com.example.z_lib_net.untils.NetUtils;
 
 import java.util.HashMap;
 
@@ -28,27 +30,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @describe
  * @create 2020/4/16 9:21
  */
-public abstract class NetworkApi implements IEnvironment {
-    private static INetworkRequiredInfo iNetworkRequiredInfo;
+public abstract class NetworkApi {
     private static HashMap<String, Retrofit> retrofitHashMap = new HashMap<>();
-    private String mBaseUrl;
+    private static String mBaseUrl;
     private OkHttpClient mOkHttpClient;
-    private static boolean mIsFormal = true;
 
-    public NetworkApi() {
-        if (!mIsFormal) {
-            mBaseUrl = getTest();
-        }
-        mBaseUrl = getFormal();
-    }
-
-    public static void init(INetworkRequiredInfo networkRequiredInfo) {
-        iNetworkRequiredInfo = networkRequiredInfo;
+    public static void init(String url) {
+        mBaseUrl = url;
     }
 
 
-    protected Retrofit  getRetrofit(Class service){
-        if (retrofitHashMap.get(mBaseUrl + service.getName()) != null){
+    protected Retrofit getRetrofit(Class service) {
+        if (retrofitHashMap.get(mBaseUrl + service.getName()) != null) {
             return retrofitHashMap.get(mBaseUrl + service.getName());
         }
         Retrofit retrofit = new Retrofit.Builder()
@@ -64,32 +57,32 @@ public abstract class NetworkApi implements IEnvironment {
     private OkHttpClient getOkHttpClient() {
         // 10MB
         int cacheSize = 100 * 1024 * 1024;
-        if (mOkHttpClient == null){
+        if (mOkHttpClient == null) {
             OkHttpClient.Builder okHttpClineBuilder = new OkHttpClient.Builder()
-                    .cache(new Cache(iNetworkRequiredInfo.getApplicationContext().getCacheDir(), cacheSize))
-                    .addInterceptor(new CommonRequestInterceptor(iNetworkRequiredInfo))
-                    .addInterceptor(new CommonResponseInterceptor());
+                    .cache(new Cache(NetUtils.getContext().getCacheDir(), cacheSize))
+                    .dns(new OkDns())
+                    .addInterceptor(new GzipRequestInterceptor())
+                    //向HTTP中写入cookie
+                    .addInterceptor(new AddSsionInterceptor())
+                    //从HTTP中读取cookie
+                    .addInterceptor(new ReadCookiesInterceptor());
             if (getInterceptor() != null) {
                 okHttpClineBuilder.addInterceptor(getInterceptor());
             }
-
-            if (iNetworkRequiredInfo != null &&(iNetworkRequiredInfo.isDebug())) {
-                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-                httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-                okHttpClineBuilder.addInterceptor(httpLoggingInterceptor);
-            }
+            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            okHttpClineBuilder.addInterceptor(httpLoggingInterceptor);
             mOkHttpClient = okHttpClineBuilder.build();
         }
         return mOkHttpClient;
     }
 
 
-
-    public  <T> ObservableTransformer<T, T> applySchedulers(final Observer<T> observer) {
+    public <T> ObservableTransformer<T, T> applySchedulers(final Observer<T> observer) {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> upstream) {
-                Observable<T> observable = (Observable<T>)upstream
+                Observable<T> observable = (Observable<T>) upstream
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .map(getAppErrorHandler())

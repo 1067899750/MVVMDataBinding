@@ -1,5 +1,6 @@
 package com.example.z_lib_net;
 
+import com.example.z_lib_base.untils.CommonUtils;
 import com.example.z_lib_net.base.NetworkApi;
 import com.example.z_lib_net.base.NewBaseResponse;
 import com.example.z_lib_net.error.ExceptionHandle;
@@ -18,7 +19,6 @@ import okhttp3.Response;
  * @create 2020/4/16 9:22
  */
 public class NewNetworkApi extends NetworkApi {
-
     private static volatile NewNetworkApi mInstance;
     public static NewNetworkApi getInstance(){
         if (mInstance == null){
@@ -36,30 +36,9 @@ public class NewNetworkApi extends NetworkApi {
     }
 
 
-
-    @Override
-    public String getFormal() {
-        return "http://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/";
-    }
-
-    @Override
-    public String getTest() {
-        return "http://service-o5ikp40z-1255468759.ap-shanghai.apigateway.myqcloud.com/";
-    }
-
     @Override
     protected Interceptor getInterceptor() {
-        return new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                String timeStr = TecentUtil.getTimeStr();
-                Request.Builder builder = chain.request().newBuilder();
-                builder.addHeader("Source", "source");
-                builder.addHeader("Authorization", TecentUtil.getAuthorization(timeStr));
-                builder.addHeader("Date", timeStr);
-                return chain.proceed(builder.build());
-            }
-        };
+        return null;
     }
 
     @Override
@@ -78,6 +57,7 @@ public class NewNetworkApi extends NetworkApi {
             }
         };
     }
+
 }
 
 
