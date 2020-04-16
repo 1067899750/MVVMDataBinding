@@ -6,9 +6,15 @@ import android.os.Bundle;
 
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.intercepter.IBaseViewModel;
+import com.example.z_lib_base.model.BaseCachedData;
+import com.example.z_lib_base.model.MvvmNetworkObserver;
+import com.orhanobut.logger.Logger;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +24,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -27,34 +34,34 @@ import io.reactivex.functions.Consumer;
  * @description
  * @date 2020/4/15 16:18
  */
-public class BaseViewModel<M extends BaseModel> extends AndroidViewModel implements IBaseViewModel, Consumer<Disposable> {
+public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
+        implements IBaseViewModel, Consumer<Disposable> {
     protected M model;
     private UIChangeLiveData uc;
     /**
      * 弱引用持有
      */
     private WeakReference<LifecycleProvider> lifecycle;
-    /**
-     * 管理RxJava，主要针对RxJava异步操作造成的内存泄漏
-     */
-    private CompositeDisposable mCompositeDisposable;
 
     public BaseViewModel(@NonNull Application application) {
-        this(application, null);
-    }
-
-    public BaseViewModel(@NonNull Application application, M model) {
         super(application);
-        this.model = model;
-        mCompositeDisposable = new CompositeDisposable();
+        if (initModel() == null) {
+            model = (M) new BaseModel();
+        } else {
+            model = initModel();
+        }
     }
 
-    protected void addSubscribe(Disposable disposable) {
-        if (mCompositeDisposable == null) {
-            mCompositeDisposable = new CompositeDisposable();
-        }
-        mCompositeDisposable.add(disposable);
+
+    /**
+     * 初始化Model
+     *
+     * @return
+     */
+    public M initModel() {
+        return null;
     }
+
 
     /**
      * 注入RxLifecycle生命周期
@@ -82,26 +89,33 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
 
     @Override
     public void onCreate() {
+        Logger.d("view model onCreate");
     }
+
 
     @Override
     public void onDestroy() {
+        Logger.d("view model onDestroy");
     }
 
     @Override
     public void onStart() {
+        Logger.d("view model onStart");
     }
 
     @Override
     public void onStop() {
+        Logger.d("view model onStop");
     }
 
     @Override
     public void onResume() {
+        Logger.d("view model onPause");
     }
 
     @Override
     public void onPause() {
+        Logger.d("view model onPause");
     }
 
     @Override
@@ -118,15 +132,11 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         if (model != null) {
             model.onCleared();
         }
-        //ViewModel销毁时会执行，同时取消所有异步任务
-        if (mCompositeDisposable != null) {
-            mCompositeDisposable.clear();
-        }
     }
 
     @Override
     public void accept(Disposable disposable) throws Exception {
-        addSubscribe(disposable);
+        model.addDisposable(disposable);
     }
 
 
@@ -140,6 +150,10 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
 
     public void dismissDialog() {
         uc.dismissDialogEvent.call();
+    }
+
+    public void showToast(String str) {
+        uc.showToastEvent.setValue(str);
     }
 
     /**
@@ -211,7 +225,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
         private SingleLiveEvent<Map<String, Object>> startContainerActivityEvent;
         private SingleLiveEvent<Void> finishEvent;
         private SingleLiveEvent<Void> onBackPressedEvent;
-        private SingleLiveEvent<String> showToastDialogEvent;
+        private SingleLiveEvent<String> showToastEvent;
 
         public SingleLiveEvent<String> getShowDialogEvent() {
             return showDialogEvent = createLiveData(showDialogEvent);
@@ -237,8 +251,8 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel impleme
             return onBackPressedEvent = createLiveData(onBackPressedEvent);
         }
 
-        MutableLiveData<String> getShowToastDialogEvent() {
-            return showToastDialogEvent = createLiveData(showToastDialogEvent);
+        MutableLiveData<String> getShowToastEvent() {
+            return showToastEvent = createLiveData(showToastEvent);
         }
 
         private <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {

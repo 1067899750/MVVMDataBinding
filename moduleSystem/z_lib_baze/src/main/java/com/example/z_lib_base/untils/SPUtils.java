@@ -1,10 +1,7 @@
-package com.example.z_lib_common.utils;
+package com.example.z_lib_base.untils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.airbnb.lottie.utils.Utils;
-import com.example.z_lib_base.untils.CommonUtils;
 
 import java.util.Collections;
 import java.util.HashMap;

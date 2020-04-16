@@ -6,14 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.z_model_main.app.AppViewModelFactory;
 import com.example.z_lib_base.base.BaseMVVMActivity;
 import com.example.z_model_main.databinding.MainActivityBinding;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
@@ -36,13 +34,6 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
         return BR.viewModel;
     }
 
-    @Override
-    public MainViewModel initViewModel() {
-        //使用自定义的ViewModelFactory来创建ViewModel，如果不重写该方法，
-        // 则默认会调用LoginViewModel(@NonNull Application application)构造方法
-        AppViewModelFactory factory = AppViewModelFactory.getInstance(getApplication());
-        return ViewModelProviders.of(this, factory).get(MainViewModel.class);
-    }
 
     @Override
     public void initData() {

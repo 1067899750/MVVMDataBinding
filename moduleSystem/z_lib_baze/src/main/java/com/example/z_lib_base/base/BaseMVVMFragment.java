@@ -160,7 +160,7 @@ public abstract class BaseMVVMFragment<V extends ViewDataBinding, VM extends Bas
             }
         });
         // //toast显示
-        viewModel.getUC().getShowToastDialogEvent().observe(this, new Observer<String>() {
+        viewModel.getUC().getShowToastEvent().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();

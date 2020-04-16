@@ -5,6 +5,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.z_lib_base.base.BaseApplication;
 import com.example.z_lib_base.untils.CommonUtils;
+import com.example.z_lib_net.base.NetworkApi;
 
 import androidx.multidex.MultiDex;
 
@@ -23,7 +24,7 @@ public class DataApplication extends BaseApplication {
             ARouter.openLog();
         }
         ARouter.init(this);
-
+        NetworkApi.init(new NetworkRequestInfo(this));
 
     }
 

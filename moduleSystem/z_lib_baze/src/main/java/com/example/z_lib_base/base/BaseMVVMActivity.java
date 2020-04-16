@@ -82,7 +82,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
             } else {
                 //如果没有指定泛型参数，则默认使用BaseViewModel
                 modelClass = BaseViewModel.class;
-            };
+            }
             viewModel = (VM) createViewModel(this, modelClass);
         }
         //关联ViewModel
@@ -157,7 +157,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
             }
         });
         //toast显示
-        viewModel.getUC().getShowToastDialogEvent().observe(this, new Observer<String>() {
+        viewModel.getUC().getShowToastEvent().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 Toast.makeText(BaseMVVMActivity.this, s, Toast.LENGTH_LONG).show();

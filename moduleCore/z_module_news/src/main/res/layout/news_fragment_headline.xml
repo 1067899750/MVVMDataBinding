@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.z_module_news.headlinenews.NewsFragmentModel" />
+            type="com.example.z_module_news.headlinenews.NewsFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"

@@ -12,6 +12,7 @@ import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.bus.command.BindingCommand;
 import com.example.z_lib_base.bus.command.BindingConsumer;
 import com.example.z_lib_common.action.data.DemoRepository;
+import com.example.z_lib_common.action.data.Injection;
 import com.example.z_lib_common.arouter.ARouterUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
@@ -37,14 +38,18 @@ public class MainViewModel extends BaseViewModel<DemoRepository> {
      */
     public UIChangeObservable uc = new UIChangeObservable();
 
-    public MainViewModel(@NonNull Application application, DemoRepository model) {
-        super(application, model);
+    public MainViewModel(@NonNull Application application) {
+        super(application);
         mFragments.add(ARouterUtils.NEWS_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.AREA_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.SERVICE_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.USER_MAIN_FRAGMENT);
     }
 
+    @Override
+    public DemoRepository initModel() {
+        return  Injection.provideDemoRepository();
+    }
 
     public class UIChangeObservable {
         public SingleLiveEvent<MenuItem> pNavigationPosition = new SingleLiveEvent<>();
