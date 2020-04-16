@@ -8,10 +8,10 @@ import com.example.z_lib_common.R;
 import com.example.z_lib_common.databinding.TitleViewBinding;
 
 /**
- * 
+ *
  * @description
  * @author puyantao
- * @date 2020/4/16 8:11
+ * @date 2020/4/16 8:33
  */
 public class TitleView extends BaseCustomView<TitleViewBinding, TitleViewViewModel> {
     public TitleView(Context context) {

@@ -12,7 +12,7 @@ import com.example.z_lib_common.databinding.PictureTitleViewBinding;
  * 
  * @description
  * @author puyantao
- * @date 2020/4/16 8:11
+ * @date 2020/4/16 8:33
  */
 public class PictureTitleView extends BaseCustomView<PictureTitleViewBinding, PictureTitleViewViewModel> {
     public PictureTitleView(Context context) {

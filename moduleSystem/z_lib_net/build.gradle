@@ -26,36 +26,43 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+
     dataBinding {
         enabled true
     }
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation rootProject.ext.support["appcompat"]
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api project(path: ':moduleSystem:z_lib_baze')
+
+    //下面两个是RxJava 和 RxAndroid
+    api rootProject.ext.dependencies.rxjava
+    api rootProject.ext.dependencies.rxandroid
+    //配合RxJava 使用
+    api rootProject.ext.dependencies["okhttp-logging-interceptor"]
+    // retrofit2
+    api rootProject.ext.dependencies.retrofit
+    api rootProject.ext.dependencies.PersistentCookieJar
+    api rootProject.ext.dependencies["adapter-rxjava"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies.okhttp
+    implementation project(path: ':moduleSystem:z_lib_baze')
 
 
-    //arouter
-    api rootProject.ext.dependencies.arouter
-    //banner 现无限轮询
-    api rootProject.ext.dependencies.banner
-    //cardview
-    api rootProject.ext.support["cardview"]
-    //glide
-    api rootProject.ext.dependencies.glide
-    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
-    //SmartRefreshLayout
-    api rootProject.ext.dependencies.SmartRefreshLayout
-    api rootProject.ext.dependencies.SmartRefreshHeader
-    //badgeview 角标数字提醒
-    api rootProject.ext.dependencies.badgeview
-    api project(path: ':moduleSystem:z_lib_net')
 }
+
+
+
+
+
+
 
 
 

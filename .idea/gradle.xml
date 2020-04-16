@@ -19,7 +19,8 @@
             <option value="$PROJECT_DIR$/modulePublic" />
             <option value="$PROJECT_DIR$/modulePublic/z_lib_common" />
             <option value="$PROJECT_DIR$/moduleSystem" />
-            <option value="$PROJECT_DIR$/moduleSystem/z_lib_base" />
+            <option value="$PROJECT_DIR$/moduleSystem/z_lib_baze" />
+            <option value="$PROJECT_DIR$/moduleSystem/z_lib_net" />
             <option value="$PROJECT_DIR$/z_model_main" />
           </set>
         </option>

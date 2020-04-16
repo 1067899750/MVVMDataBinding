@@ -15,6 +15,10 @@ buildscript {
         }
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url "http://mvn.mob.com/android"
+        }
         
     }
     dependencies {
@@ -39,7 +43,10 @@ allprojects {
         }
         google()
         jcenter()
-        
+        maven { url "https://jitpack.io" }
+        maven {
+            url "http://mvn.mob.com/android"
+        }
     }
 }
 
