@@ -1,0 +1,96 @@
+ext {
+    develop = [
+            app_client            : "pr",
+            apk_name              : "bsd_purang.apk",
+            application_id        : "com.data.develop",
+            version_code          : 100,
+            version_name          : "1.0.0",
+            app_name              : "组件化APP-develop",
+            release               : "https://yanyangtian.purang.com/",
+            debug                 : "https://yanyangtian.purang.com/",
+            debugTest             : "https://yanyangtian.purang.com/",
+            debugUat              : "https://yanyangtian.purang.com/",
+            shop_id               : "10",
+            app_icon              : "@drawable/icon_develop",
+            qq_appid_app_key      : '"1106052137"',
+
+
+            app_file_provider     : "com.purang.bsd_purang.fileProvider",
+            application_package   : "com.purang.bsd.purang",
+            app_id_app_key        : '"wx57ee655d45be8d8a"',
+            getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
+            getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
+            getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+
+
+    ]
+
+    check = [
+            app_client            : "pr",
+            apk_name              : "bsd_purang.apk",
+            application_id        : "com.data.check",
+            version_code          : 101,
+            version_name          : "1.0.1",
+            app_name              : '组件化APP-check',
+            release               : "https://yanyangtian.purang.com/",
+            debug                 : "https://yanyangtian.purang.com/",
+            debugTest             : "https://yanyangtian.purang.com/",
+            debugUat              : "https://yanyangtian.purang.com/",
+            shop_id               : "10",
+            app_icon              : "@drawable/icon_check",
+            qq_appid_app_key      : '"1106052137"',
+
+
+            application_package   : "com.purang.bsd.purang",
+            app_file_provider     : "com.purang.bsd_purang.fileProvider",
+            app_id_app_key        : '"wx57ee655d45be8d8a"',
+            getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
+            getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
+            getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+    ]
+
+    product = [
+            app_client            : "pr",
+            apk_name              : "bsd_purang.apk",
+            application_id        : "com.data.product",
+            version_code          : 102,
+            version_name          : "1.0.2",
+            app_name              : '组件化APP-product',
+            release               : "https://yanyangtian.purang.com/",
+            debug                 : "https://yanyangtian.purang.com/",
+            debugTest             : "https://yanyangtian.purang.com/",
+            debugUat              : "https://yanyangtian.purang.com/",
+            shop_id               : "10",
+            app_icon              : "@drawable/icon_check",
+            qq_appid_app_key      : '"1106052137"',
+
+            application_package   : "com.purang.bsd.purang",
+            app_file_provider     : "com.purang.bsd_purang.fileProvider",
+            app_id_app_key        : '"wx57ee655d45be8d8a"',
+            getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
+            getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
+            getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+    ]
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,11 +11,11 @@ android {
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId rootProject.ext.android.applicationId
+            versionCode rootProject.ext.android.versionCode
+            versionName rootProject.ext.android.versionName
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -31,12 +31,18 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             debuggable true
         }
+
+        debugUat {
+            debuggable true
+        }
+
     }
 
     //代码混淆

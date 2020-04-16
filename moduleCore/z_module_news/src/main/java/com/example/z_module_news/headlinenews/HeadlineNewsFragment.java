@@ -54,7 +54,6 @@ public class HeadlineNewsFragment extends BaseMVVMFragment<HeadlineNewsFragmentD
     @Override
     public void initData() {
         viewModel.name.set("新闻界面");
-        viewModel.intiNet();
     }
 
 

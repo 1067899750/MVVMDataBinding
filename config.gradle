@@ -1,11 +1,12 @@
 ext {
     //android开发版本配置
     android = [
-            compileSdkVersion: 29,
-            buildToolsVersion: "29.0.2",
-            applicationId    : "com.example.databinding",
+            compileSdkVersion: 28,
+            buildToolsVersion: "28.0.3",
             minSdkVersion    : 16,
             targetSdkVersion : 28,
+
+            applicationId    : "com.example.databinding",
             versionCode      : 1,
             versionName      : "1.0",
     ]
@@ -84,7 +85,7 @@ ext {
             "retrofit"                             : "com.squareup.retrofit2:retrofit:2.5.0",
             "converter-gson"                       : "com.squareup.retrofit2:converter-gson:2.4.0",
             "adapter-rxjava"                       : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
-            "PersistentCookieJar"       : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
+            "PersistentCookieJar"                  : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
 
 
             //rx 6.0权限请求

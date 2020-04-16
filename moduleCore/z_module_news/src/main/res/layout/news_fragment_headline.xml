@@ -12,14 +12,18 @@
             type="com.example.z_module_news.headlinenews.NewsFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:binding="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.name}"
+            android:background="@android:color/holo_red_dark"
+            binding:onClickCommand="@{viewModel.requestNet}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -27,3 +31,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+
+
+
+
+
+
+
+
+
+
+
+

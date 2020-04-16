@@ -18,6 +18,7 @@ import com.example.z_lib_base.untils.CommonUtils;
 public class BaseApplication extends Application {
 
     private static BaseApplication sInstance;
+    public static String MY_STR = "";
 
     public static BaseApplication getInstance() {
         return sInstance;

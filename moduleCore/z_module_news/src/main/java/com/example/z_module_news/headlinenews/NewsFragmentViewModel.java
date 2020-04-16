@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.base.BaseViewModel;
+import com.example.z_lib_base.bus.command.BindingAction;
+import com.example.z_lib_base.bus.command.BindingCommand;
 import com.example.z_lib_base.model.MvvmNetworkObserver;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_lib_net.NewNetworkApi;
@@ -29,11 +31,14 @@ public class NewsFragmentViewModel extends BaseViewModel<NewFragmentModel> {
         return new NewFragmentModel();
     }
 
-    public void intiNet(){
-        model.initNet();
-    }
 
 
+    public BindingCommand requestNet = new BindingCommand(new BindingAction() {
+        @Override
+        public void call() {
+            model.initNet();
+        }
+    });
 
 }
 

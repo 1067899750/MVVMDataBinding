@@ -9,10 +9,12 @@ import androidx.lifecycle.Observer;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.z_lib_base.base.BaseMVVMActivity;
+import com.example.z_lib_common.bankres.BankResFactory;
 import com.example.z_model_main.databinding.MainActivityBinding;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
@@ -37,6 +39,8 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
 
     @Override
     public void initData() {
+        getApplicationPackage();
+
         updateFragment(0);
         //init toolBar
         setSupportActionBar(binding.toolBar);
@@ -130,6 +134,11 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
             // case blocks for other MenuItems (if any)
         }
         return true;
+    }
+
+    private void getApplicationPackage() {
+        String str = BankResFactory.getInstance().getPackage();
+        Log.d("---> BankResFactory", str);
     }
 }
 

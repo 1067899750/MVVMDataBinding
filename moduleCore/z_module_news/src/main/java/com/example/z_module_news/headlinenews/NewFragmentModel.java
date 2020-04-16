@@ -16,7 +16,6 @@ import com.orhanobut.logger.Logger;
  */
 public class NewFragmentModel extends BaseModel implements MvvmNetworkObserver<NewsChannelsBean>{
 
-
     public void initNet() {
         NewNetworkApi.getService(NewsApiInterface.class)
                 .getNewsChannels()
