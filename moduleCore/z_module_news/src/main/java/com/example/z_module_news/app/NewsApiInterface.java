@@ -6,6 +6,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -18,4 +19,8 @@ import retrofit2.http.QueryMap;
 public interface NewsApiInterface {
     @GET("mobile/login.htm")
     Observable<Object> getLoginInfo(@QueryMap Map<String, String> map);
+
+    @POST("mobile/billRecord/billHomePage.htm")
+    Observable<Object> getBillHomePage();
+
 }

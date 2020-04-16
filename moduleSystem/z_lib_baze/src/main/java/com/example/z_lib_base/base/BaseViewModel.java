@@ -6,15 +6,10 @@ import android.os.Bundle;
 
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.intercepter.IBaseViewModel;
-import com.example.z_lib_base.model.BaseCachedData;
-import com.example.z_lib_base.model.MvvmNetworkObserver;
 import com.orhanobut.logger.Logger;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.lang.ref.WeakReference;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +19,6 @@ import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 

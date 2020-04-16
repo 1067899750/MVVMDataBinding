@@ -2,14 +2,9 @@ package com.example.z_module_news.headlinenews;
 
 import android.app.Application;
 
-import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_base.bus.command.BindingAction;
 import com.example.z_lib_base.bus.command.BindingCommand;
-import com.example.z_lib_base.model.MvvmNetworkObserver;
-import com.example.z_lib_net.base.BaseObserver;
-import com.example.z_lib_net.NewNetworkApi;
-import com.example.z_module_news.app.NewsApiInterface;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
