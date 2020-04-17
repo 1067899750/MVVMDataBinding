@@ -95,8 +95,8 @@ public abstract class BaseMVVMFragment<V extends ViewDataBinding, VM extends Bas
             if (type instanceof ParameterizedType) {
                 modelClass = (Class) ((ParameterizedType) type).getActualTypeArguments()[1];
             } else {
-                //如果没有指定泛型参数，则默认使用BaseViewModel
-                modelClass = BaseViewModel.class;
+                //如果没有指定泛型参数，则默认使用 BaseConniveViewModel
+                modelClass = BaseConniveViewModel.class;
             }
             viewModel = (VM) createViewModel(this, modelClass);
         }

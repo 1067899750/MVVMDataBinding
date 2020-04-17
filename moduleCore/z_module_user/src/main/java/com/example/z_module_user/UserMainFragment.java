@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.z_lib_base.base.BaseConniveViewModel;
 import com.example.z_lib_base.base.BaseMVVMFragment;
 import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_common.arouter.ARouterUtils;
