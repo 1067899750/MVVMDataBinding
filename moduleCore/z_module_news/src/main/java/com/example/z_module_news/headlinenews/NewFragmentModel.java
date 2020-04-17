@@ -7,6 +7,7 @@ import com.example.z_lib_net.NewNetworkApi;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_lib_net.base.BaseResponse;
 import com.example.z_module_news.app.NewsApiInterface;
+import com.example.z_module_news.bean.NewsChannelsBean;
 import com.orhanobut.logger.Logger;
 
 
@@ -29,7 +30,7 @@ public class NewFragmentModel extends BaseModel implements MVVMNetworkObserver<B
     @Override
     public void onSuccess(BaseResponse data, String tag, boolean isFromCache) {
         if (tag.equals("page")){
-            if (data instanceof NewsChannelsBean  ){
+            if (data instanceof NewsChannelsBean){
                 NewsChannelsBean.NewsDataBean dataBean = ((NewsChannelsBean) data).mNewsDataBean;
                 Logger.d(data.toString());
             }

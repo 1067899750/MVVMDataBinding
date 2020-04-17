@@ -1,4 +1,4 @@
-package com.example.z_module_news.headlinenews;
+package com.example.z_module_news.bean;
 
 import com.example.z_lib_net.base.BaseResponse;
 import com.google.gson.annotations.Expose;
