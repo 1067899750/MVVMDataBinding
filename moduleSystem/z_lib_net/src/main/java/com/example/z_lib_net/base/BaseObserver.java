@@ -19,15 +19,15 @@ public class BaseObserver<T> implements Observer<T> {
     private MVVMNetworkObserver<T> mNetworkObserver;
     private String mTag;
 
-    public BaseObserver(BaseModel baseModel, MVVMNetworkObserver<T> observer, String tag) {
+    public BaseObserver(BaseModel baseModel, MVVMNetworkObserver<T> observer, String... tag) {
         this.baseModel = baseModel;
         this.mNetworkObserver = observer;
-        this.mTag = tag;
+        this.mTag = tag.length > 0 ? tag[0] : "data";
     }
 
-    public BaseObserver(MVVMNetworkObserver<T> observer, String tag) {
+    public BaseObserver(MVVMNetworkObserver<T> observer, String... tag) {
         this.mNetworkObserver = observer;
-        this.mTag = tag;
+        this.mTag = tag.length > 0 ? tag[0] : "data";
     }
 
     @Override
@@ -42,7 +42,7 @@ public class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T data) {
-        mNetworkObserver.onSuccess(data, mTag, false);
+        mNetworkObserver.onSuccess(data, false, mTag);
     }
 
     @Override

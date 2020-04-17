@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="AreaMainFragmentBinding">
-
+        <variable
+            name="viewModel"
+            type="com.example.z_module_area.AreaFragmentViewModel" />
     </data>
 
     <FrameLayout

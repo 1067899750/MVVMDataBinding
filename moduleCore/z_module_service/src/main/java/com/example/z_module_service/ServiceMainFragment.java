@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.z_lib_base.base.BaseMVVMFragment;
 import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_common.arouter.ARouterUtils;
+import com.example.z_lib_common.model.NetWorkViewModel;
 import com.example.z_module_service.databinding.ServiceMainFragmentBinding;
 
 
@@ -21,7 +22,7 @@ import com.example.z_module_service.databinding.ServiceMainFragmentBinding;
  * @date 2020/4/14 14:07
  */
 @Route(path = ARouterUtils.SERVICE_MAIN_FRAGMENT)
-public class ServiceMainFragment extends BaseMVVMFragment<ServiceMainFragmentBinding, BaseViewModel> {
+public class ServiceMainFragment extends BaseMVVMFragment<ServiceMainFragmentBinding, ServiceFragmentViewModel> {
 
     public ServiceMainFragment() {
     }
@@ -45,6 +46,6 @@ public class ServiceMainFragment extends BaseMVVMFragment<ServiceMainFragmentBin
 
     @Override
     public int initVariableId() {
-        return 0;
+        return BR.viewModel;
     }
 }

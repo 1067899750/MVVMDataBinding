@@ -80,7 +80,6 @@ public abstract class BaseViewModel<M extends BaseModel> extends AndroidViewMode
 
     @Override
     public void onCreate() {
-        model.load();
         XLog.d("view model onCreate");
     }
 

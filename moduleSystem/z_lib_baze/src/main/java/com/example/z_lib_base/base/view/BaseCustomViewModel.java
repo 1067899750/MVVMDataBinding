@@ -11,7 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 /**
  * @author puyantao
- * @description 自定义 View 基类 model
+ * @description 自定义通用View基类model
  * @date 2020/4/15 16:39
  */
 public class BaseCustomViewModel<M extends BaseModel> extends AndroidViewModel implements Serializable {
@@ -30,6 +30,8 @@ public class BaseCustomViewModel<M extends BaseModel> extends AndroidViewModel i
             model.onCleared();
         }
     }
+
+
 }
 
 

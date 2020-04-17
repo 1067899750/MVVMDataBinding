@@ -70,8 +70,9 @@ public class DemoRepository extends BaseModel implements LocalDataSource {
 
     }
 
+
     @Override
-    public void onSuccess(Object data, String tag, boolean isFromCache) {
+    public void onSuccess(Object data, boolean isFromCache, String tag) {
 
     }
 

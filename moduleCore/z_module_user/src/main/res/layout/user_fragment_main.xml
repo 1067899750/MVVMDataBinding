@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="UserMainFragmentBinding">
-
+        <variable
+            name="viewModel"
+            type="com.example.z_module_user.UserFragmentViewModel" />
     </data>
 
     <FrameLayout

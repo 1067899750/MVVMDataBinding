@@ -9,6 +9,7 @@ import com.example.z_lib_base.bus.command.BindingCommand;
 import com.example.z_lib_base.model.PagingResult;
 import com.example.z_lib_base.untils.ToastUtils;
 import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_common.model.NetTagUtil;
 import com.example.z_lib_common.model.NetWorkViewModel;
 import com.example.z_lib_net.base.BaseResponse;
 import com.example.z_module_news.bean.NewsChannelsBean;
@@ -37,15 +38,14 @@ public class NewsFragmentViewModel extends NetWorkViewModel<NewFragmentModel, Ba
     public BindingCommand requestNet = new BindingCommand(new BindingAction() {
         @Override
         public void call() {
-            model.load();
+            model.getCachedDataAndLoad();
         }
     });
 
-
     @Override
-    public void onLoadFinish(BaseResponse data, String tag) {
-        super.onLoadFinish(data, tag);
-        if (tag.equals("page")) {
+    public void onLoadFinish(BaseModel model, BaseResponse data, String tag) {
+        super.onLoadFinish(model, data, tag);
+        if (tag.equals(NetTagUtil.PAGE_TAG)) {
             if (data instanceof NewsChannelsBean) {
                 NewsChannelsBean.NewsDataBean dataBean = ((NewsChannelsBean) data).mNewsDataBean;
                 XLog.d("--->", data.toString());
@@ -57,6 +57,7 @@ public class NewsFragmentViewModel extends NetWorkViewModel<NewFragmentModel, Ba
     protected void finishLoadData() {
         ToastUtils.showLongToast("finish load data");
     }
+
 
 }
 

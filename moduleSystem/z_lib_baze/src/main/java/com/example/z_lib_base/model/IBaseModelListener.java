@@ -1,6 +1,8 @@
 package com.example.z_lib_base.model;
 
 
+import com.example.z_lib_base.base.BaseModel;
+
 /**
  * @author puyantao
  * @description viewModel 和 model 沟通的接口
@@ -10,18 +12,19 @@ public interface IBaseModelListener<T> {
     /**
      * 成功调用
      *
-     * @param tag
-     * @param data
+     * @param model 用来判断哪个model传来的数据
+     * @param tag   区分调用接口标识
+     * @param data  数据
      */
-    void onLoadFinish(T data, String tag);
+    void onLoadFinish(BaseModel model, T data, String tag);
 
     /**
      * 调用失败
      *
-     * @param tag
-     * @param message
+     * @param model   用来判断哪个model传来的数据
+     * @param message 错误信息
      */
-    void onLoadFail(String message);
+    void onLoadFail(BaseModel model, String message);
 }
 
 

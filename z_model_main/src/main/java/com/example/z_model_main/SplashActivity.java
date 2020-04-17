@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.z_lib_base.model.MVVMNetworkObserver;
 import com.example.z_lib_common.action.data.LocalDataSourceImpl;
+import com.example.z_lib_common.model.NetTagUtil;
 import com.example.z_lib_net.NewNetworkApi;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_model_main.bean.LoginModel;
@@ -49,13 +50,13 @@ public class SplashActivity extends AppCompatActivity implements MVVMNetworkObse
                 .getLoginInfo(loginMap)
                 .compose(NewNetworkApi.
                         getInstance().
-                        applySchedulers(new BaseObserver<LoginModel>(this, "login")));
+                        applySchedulers(new BaseObserver<LoginModel>(this, NetTagUtil.LOGIN_TAG)));
     }
 
 
     @Override
-    public void onSuccess(LoginModel data, String tag, boolean isFromCache) {
-        if (tag.equals("login")) {
+    public void onSuccess(LoginModel data, boolean isFromCache, String tag) {
+        if (tag.equals(NetTagUtil.LOGIN_TAG)) {
             LocalDataSourceImpl.getInstance().saveUserName(data.realName);
             LocalDataSourceImpl.getInstance().saveMobile(data.mobile);
             startActivity(new Intent(this, MainActivity.class));

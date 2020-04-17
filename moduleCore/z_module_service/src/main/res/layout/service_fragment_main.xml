@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data class="ServiceMainFragmentBinding">
-
+        <variable
+            name="viewModel"
+            type="com.example.z_module_service.ServiceFragmentViewModel" />
     </data>
 
     <FrameLayout

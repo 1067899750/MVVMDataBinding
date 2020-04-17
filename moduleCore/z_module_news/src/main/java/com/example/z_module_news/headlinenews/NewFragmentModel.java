@@ -5,6 +5,7 @@ import com.example.z_lib_base.model.IBaseModelListener;
 import com.example.z_lib_base.model.MVVMNetworkObserver;
 
 import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_common.model.NetTagUtil;
 import com.example.z_lib_net.NewNetworkApi;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_lib_net.base.BaseResponse;
@@ -21,7 +22,7 @@ import com.orhanobut.logger.Logger;
  */
 public class NewFragmentModel extends BaseModel<BaseResponse> {
     public NewFragmentModel() {
-        super();
+        super(BaseResponse.class, "page");
     }
 
     @Override
@@ -36,12 +37,13 @@ public class NewFragmentModel extends BaseModel<BaseResponse> {
                 .getBillHomePage()
                 .compose(NewNetworkApi.
                         getInstance().
-                        applySchedulers(new BaseObserver<BaseResponse>(this, this, "page")));
+                        applySchedulers(new BaseObserver<BaseResponse>(this, this, NetTagUtil.PAGE_TAG)));
     }
 
+
     @Override
-    public void onSuccess(BaseResponse data, String tag, boolean isFromCache) {
-        loadSuccess(data, tag);
+    public void onSuccess(BaseResponse data, boolean isFromCache, String tag) {
+        loadSuccess(data, isFromCache, tag);
     }
 
     @Override
