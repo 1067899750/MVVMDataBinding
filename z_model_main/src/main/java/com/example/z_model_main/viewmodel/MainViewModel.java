@@ -11,8 +11,6 @@ import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.bus.command.BindingCommand;
 import com.example.z_lib_base.bus.command.BindingConsumer;
-import com.example.z_lib_common.action.data.DemoRepository;
-import com.example.z_lib_common.action.data.Injection;
 import com.example.z_lib_common.arouter.ARouterUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
@@ -45,6 +43,7 @@ public class MainViewModel extends BaseViewModel {
         mFragments.add(ARouterUtils.SERVICE_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.USER_MAIN_FRAGMENT);
     }
+
 
     public class UIChangeObservable {
         public SingleLiveEvent<MenuItem> pNavigationPosition = new SingleLiveEvent<>();

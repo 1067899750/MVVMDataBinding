@@ -59,6 +59,26 @@ public class DemoRepository extends BaseModel implements LocalDataSource {
     public String getMobile() {
         return mLocalDataSource.getMobile();
     }
+
+    @Override
+    public void refresh() {
+
+    }
+
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    public void onSuccess(Object data, String tag, boolean isFromCache) {
+
+    }
+
+    @Override
+    public void onFailure(Throwable e) {
+
+    }
 }
 
 

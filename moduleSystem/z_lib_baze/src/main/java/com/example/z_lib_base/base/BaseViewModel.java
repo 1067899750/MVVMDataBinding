@@ -3,10 +3,9 @@ package com.example.z_lib_base.base;
 import android.app.Application;
 import android.os.Bundle;
 
-
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_lib_base.base.intercepter.IBaseViewModel;
-import com.orhanobut.logger.Logger;
+import com.example.z_lib_base.untils.log.XLog;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.lang.ref.WeakReference;
@@ -27,7 +26,7 @@ import io.reactivex.functions.Consumer;
  * @description
  * @date 2020/4/15 16:18
  */
-public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
+public abstract class BaseViewModel<M extends BaseModel> extends AndroidViewModel
         implements IBaseViewModel, Consumer<Disposable> {
     protected M model;
     private UIChangeLiveData uc;
@@ -39,12 +38,11 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
     public BaseViewModel(@NonNull Application application) {
         super(application);
         if (initModel() == null) {
-            model = (M) new BaseModel();
+            model = (M) new BaseConniveModel();
         } else {
             model = initModel();
         }
     }
-
 
     /**
      * 初始化Model
@@ -82,33 +80,35 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
 
     @Override
     public void onCreate() {
-        Logger.d("view model onCreate");
+        model.load();
+        XLog.d("view model onCreate");
     }
 
 
     @Override
     public void onDestroy() {
-        Logger.d("view model onDestroy");
+        XLog.d("view model onDestroy");
     }
+
 
     @Override
     public void onStart() {
-        Logger.d("view model onStart");
+        XLog.d("view model onStart");
     }
 
     @Override
     public void onStop() {
-        Logger.d("view model onStop");
+        XLog.d("view model onStop");
     }
 
     @Override
     public void onResume() {
-        Logger.d("view model onPause");
+        XLog.d("view model onPause");
     }
 
     @Override
     public void onPause() {
-        Logger.d("view model onPause");
+        XLog.d("view model onPause");
     }
 
     @Override
@@ -211,6 +211,7 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
         uc.onBackPressedEvent.call();
     }
 
+
     public final class UIChangeLiveData extends SingleLiveEvent {
         private SingleLiveEvent<String> showDialogEvent;
         private SingleLiveEvent<Void> dismissDialogEvent;
@@ -266,4 +267,9 @@ public class BaseViewModel<M extends BaseModel> extends AndroidViewModel
         public static String CANONICAL_NAME = "CANONICAL_NAME";
         public static String BUNDLE = "BUNDLE";
     }
+
+
 }
+
+
+
