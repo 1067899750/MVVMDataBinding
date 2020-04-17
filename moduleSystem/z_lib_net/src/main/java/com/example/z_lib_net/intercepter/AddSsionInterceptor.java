@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 
+import com.example.z_lib_base.untils.log.XLog;
 import com.example.z_lib_net.untils.NetUtils;
 
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class AddSsionInterceptor implements Interceptor {
             for (String cookie : preferences) {
                 builder.addHeader("Cookie", cookie);
                 // This is done so I know which headers are being added; this interceptor is used after the normal logging of OkHttp
-                Log.d(TAG, "Adding Header: " + cookie);
+                XLog.d(TAG, "Adding Header: " + cookie);
             }
         }
         return chain.proceed(builder.build());

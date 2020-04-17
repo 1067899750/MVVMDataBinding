@@ -16,7 +16,8 @@
 
 package com.example.z_lib_base.bus.event;
 
-import android.util.Log;
+
+import com.example.z_lib_base.untils.log.XLog;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -47,7 +48,7 @@ public class SingleLiveEvent<T> extends MutableLiveData<T> {
     public void observe(LifecycleOwner owner, final Observer<? super T> observer) {
 
         if (hasActiveObservers()) {
-            Log.w(TAG, "Multiple observers registered but only one will be notified of changes.");
+            XLog.d(TAG, "Multiple observers registered but only one will be notified of changes.");
         }
 
         // Observe the internal MutableLiveData

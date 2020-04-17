@@ -10,7 +10,7 @@ import com.example.z_lib_base.base.BaseApplication;
 import com.example.z_lib_base.untils.CommonUtils;
 import com.example.z_lib_common.bankres.ConfigPermission;
 import com.example.z_lib_common.multipackage.EnvType;
-import com.example.z_lib_net.base.NetworkApi;
+import com.example.z_lib_base.untils.log.XLog;
 import com.example.z_lib_net.untils.NetUtils;
 
 import androidx.multidex.MultiDex;
@@ -36,7 +36,8 @@ public class DataApplication extends BaseApplication {
         }
         ARouter.init(this);
         NetUtils.init(this, getResources().getString(R.string.base_url));
-
+        //出书画Log
+        XLog.init(BuildConfig.LOG_DEBUG, "--logApp-->");
         //初始化多环境打包
         initMultiPackage();
         getOtherMessage();
@@ -60,14 +61,14 @@ public class DataApplication extends BaseApplication {
         ConfigPermission.APPLICATION_PACKAGE = str;
         // resValue 资源文件调用
 
-        Log.d("---> base_url ",getResources().getString(R.string.base_url));
-        Log.d("---> mall_base_url ",getResources().getString(R.string.mall_base_url));
+        XLog.d("---> base_url ",getResources().getString(R.string.base_url));
+        XLog.d("---> mall_base_url ",getResources().getString(R.string.mall_base_url));
         Log.d("---> app_client ",getResources().getString(R.string.app_client));
 
         // buildConfigField 配置文件调用
-        Log.d("---> QQ_APPID ",BuildConfig.QQ_APPID);
-        Log.d("---> LOG_DEBUG ",BuildConfig.LOG_DEBUG + "");
-        Log.d("---> APPLICATION_ID ",BuildConfig.APPLICATION_ID);
+        XLog.d("---> QQ_APPID ",BuildConfig.QQ_APPID);
+        XLog.d("---> LOG_DEBUG ",BuildConfig.LOG_DEBUG + "");
+        XLog.d("---> APPLICATION_ID ",BuildConfig.APPLICATION_ID);
 
 
     }
@@ -82,9 +83,9 @@ public class DataApplication extends BaseApplication {
                 String appsecret = appInfo.metaData.getString("PUSH_APPSECRET");
                 String appkey = appInfo.metaData.getString("PUSH_APPKEY");
 
-                Log.d("---> PUSH_APPID ",appid + "");
-                Log.d("---> PUSH_APPSECRET ",appsecret + "");
-                Log.d("---> PUSH_APPKEY ",appkey + "");
+                XLog.d("---> PUSH_APPID ",appid + "");
+                XLog.d("---> PUSH_APPSECRET ",appsecret + "");
+                XLog.d("---> PUSH_APPKEY ",appkey + "");
             }
         } catch (Exception e) {
             e.printStackTrace();

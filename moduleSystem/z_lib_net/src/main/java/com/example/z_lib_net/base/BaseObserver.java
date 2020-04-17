@@ -3,6 +3,7 @@ package com.example.z_lib_net.base;
 
 import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.model.MVVMNetworkObserver;
+import com.example.z_lib_base.untils.log.XLog;
 import com.example.z_lib_net.error.ExceptionHandle;
 
 import io.reactivex.Observer;
@@ -31,6 +32,7 @@ public class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
+        XLog.e("--newWorkError-->", e.getMessage());
         if (e instanceof ExceptionHandle.ResponeThrowable) {
             mNetworkObserver.onFailure(e);
         } else {

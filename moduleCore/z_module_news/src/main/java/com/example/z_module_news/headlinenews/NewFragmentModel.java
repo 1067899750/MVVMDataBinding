@@ -3,6 +3,7 @@ package com.example.z_module_news.headlinenews;
 import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.model.MVVMNetworkObserver;
 
+import com.example.z_lib_base.untils.log.XLog;
 import com.example.z_lib_net.NewNetworkApi;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_lib_net.base.BaseResponse;
@@ -32,7 +33,7 @@ public class NewFragmentModel extends BaseModel implements MVVMNetworkObserver<B
         if (tag.equals("page")){
             if (data instanceof NewsChannelsBean){
                 NewsChannelsBean.NewsDataBean dataBean = ((NewsChannelsBean) data).mNewsDataBean;
-                Logger.d(data.toString());
+                XLog.d("--->", data.toString());
             }
         }
     }

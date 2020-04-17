@@ -2,6 +2,8 @@ package com.example.z_lib_net.intercepter;
 
 import android.util.Log;
 
+import com.example.z_lib_base.untils.log.XLog;
+
 import java.io.IOException;
 
 import okhttp3.Headers;
@@ -34,19 +36,19 @@ public class LogInterceptor implements Interceptor {
             String url = request.url().toString();
             Headers headers = request.headers();
 
-            Log.d(TAG, "url : " + url);
-            Log.d(TAG, "method : " + request.method());
+            XLog.d(TAG, "url : " + url);
+            XLog.d(TAG, "method : " + request.method());
             if (headers != null && headers.size() > 0) {
-                Log.d(TAG, "headers : " + headers.toString());
+                XLog.d(TAG, "headers : " + headers.toString());
             }
             RequestBody requestBody = request.body();
             if (requestBody != null) {
                 MediaType mediaType = requestBody.contentType();
                 if (mediaType != null) {
                     if (isText(mediaType)) {
-                        Log.d(TAG, "params : " + bodyToString(request));
+                        XLog.d(TAG, "params : " + bodyToString(request));
                     } else {
-                        Log.d(TAG, "params : " + " maybe [file part] , too large too print , ignored!");
+                        XLog.d(TAG, "params : " + " maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
@@ -58,7 +60,7 @@ public class LogInterceptor implements Interceptor {
     private Response logResponse(Response response) {
         try {
             for (String header : response.headers("Set-Cookie")) {
-                Log.d(TAG, "Set-Cookie : " + header);
+                XLog.d(TAG, "Set-Cookie : " + header);
             }
 
             Response.Builder builder = response.newBuilder();
@@ -69,12 +71,12 @@ public class LogInterceptor implements Interceptor {
                 if (mediaType != null) {
                     if (isText(mediaType)) {
                         String resp = body.string();
-                        Log.d(TAG, "data : " + resp);
+                        XLog.d(TAG, "data : " + resp);
 
                         body = ResponseBody.create(mediaType, resp);
                         return response.newBuilder().body(body).build();
                     } else {
-                        Log.d(TAG, "data : " + " maybe [file part] , too large too print , ignored!");
+                        XLog.d(TAG, "data : " + " maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
