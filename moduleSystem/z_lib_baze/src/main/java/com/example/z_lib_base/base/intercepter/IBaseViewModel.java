@@ -1,4 +1,4 @@
-package com.example.z_lib_base.intercepter;
+package com.example.z_lib_base.base.intercepter;
 
 
 import androidx.lifecycle.Lifecycle;

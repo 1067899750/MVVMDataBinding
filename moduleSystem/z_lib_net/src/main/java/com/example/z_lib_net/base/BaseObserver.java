@@ -24,6 +24,11 @@ public class BaseObserver<T> implements Observer<T> {
         this.mTag = tag;
     }
 
+    public BaseObserver(MVVMNetworkObserver<T> observer, String tag) {
+        this.mNetworkObserver = observer;
+        this.mTag = tag;
+    }
+
     @Override
     public void onError(Throwable e) {
         if (e instanceof ExceptionHandle.ResponeThrowable) {

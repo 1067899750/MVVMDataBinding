@@ -1,5 +1,6 @@
 package com.example.z_module_news.app;
 
+import com.example.z_lib_net.base.BaseResponse;
 import com.example.z_module_news.headlinenews.NewsChannelsBean;
 
 import java.util.Map;
@@ -17,10 +18,11 @@ import retrofit2.http.QueryMap;
  * @date 2020/4/16 10:03
  */
 public interface NewsApiInterface {
-    @GET("mobile/login.htm")
-    Observable<Object> getLoginInfo(@QueryMap Map<String, String> map);
-
+    /**
+     *
+     * @return
+     */
     @POST("mobile/billRecord/billHomePage.htm")
-    Observable<Object> getBillHomePage();
+    Observable<NewsChannelsBean> getBillHomePage();
 
 }

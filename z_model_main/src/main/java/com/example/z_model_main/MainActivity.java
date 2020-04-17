@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.example.z_lib_base.base.BaseMVVMActivity;
 import com.example.z_lib_common.bankres.BankResFactory;
 import com.example.z_model_main.databinding.MainActivityBinding;
+import com.example.z_model_main.viewmodel.MainViewModel;
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 /**

@@ -49,6 +49,16 @@ public class DemoRepository extends BaseModel implements LocalDataSource {
     public String getPassword() {
         return mLocalDataSource.getPassword();
     }
+
+    @Override
+    public void saveMobile(String mobile) {
+        mLocalDataSource.saveMobile(mobile);
+    }
+
+    @Override
+    public String getMobile() {
+        return mLocalDataSource.getMobile();
+    }
 }
 
 

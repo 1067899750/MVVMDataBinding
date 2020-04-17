@@ -1,4 +1,4 @@
-package com.example.z_model_main;
+package com.example.z_model_main.viewmodel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -30,7 +30,7 @@ import q.rorbin.badgeview.QBadgeView;
  * @describe
  * @create 2020/4/15 11:13
  */
-public class MainViewModel extends BaseViewModel<DemoRepository> {
+public class MainViewModel extends BaseViewModel {
     public ArrayList<String> mFragments = new ArrayList<>();
 
     /**
@@ -44,11 +44,6 @@ public class MainViewModel extends BaseViewModel<DemoRepository> {
         mFragments.add(ARouterUtils.AREA_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.SERVICE_MAIN_FRAGMENT);
         mFragments.add(ARouterUtils.USER_MAIN_FRAGMENT);
-    }
-
-    @Override
-    public DemoRepository initModel() {
-        return  Injection.provideDemoRepository();
     }
 
     public class UIChangeObservable {

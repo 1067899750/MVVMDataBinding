@@ -1,4 +1,4 @@
-package com.example.z_lib_common.widget.adapter;
+package com.example.z_lib_common.action.viewadapter;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -17,7 +17,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  * @author puyantao
  * @date 2020/4/15 17:36
  */
-public class CommonBindingAdapters {
+public class ImageViewAdapters {
 
     @BindingAdapter(value = {"imageUrl", "placeholderRes"}, requireAll = false)
     public static void setImageUri(ImageView view, String url, int placeholderRes) {
@@ -29,7 +29,7 @@ public class CommonBindingAdapters {
                     .into(view);
         }
     }
-    @BindingAdapter("android:visibility")
+    @BindingAdapter(value = {"isVisible"}, requireAll = false)
     public static void setVisibility(View view, Boolean value) {
         view.setVisibility(value ? View.VISIBLE : View.GONE);
     }

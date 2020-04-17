@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
-import com.example.z_lib_base.intercepter.IBaseViewModel;
+import com.example.z_lib_base.base.intercepter.IBaseViewModel;
 import com.orhanobut.logger.Logger;
 import com.trello.rxlifecycle2.LifecycleProvider;
 

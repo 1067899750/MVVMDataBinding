@@ -25,6 +25,8 @@
     <attr name="currentView" format="reference" />
     <attr name="isVisible" format="boolean" />
     <!-- require boolean value to decide whether requestFocus for view. -->
+
+
     <declare-styleable name="View">
         <!-- require BindingCommand {@link com.kelin.mvvmlight.command.BindingCommand } to deal with view click event. -->
         <attr name="onClickCommand" />
@@ -36,7 +38,6 @@
         <attr name="onTouchCommand" />
         <attr name="isThrottleFirst" />
         <attr name="currentView" />
-
     </declare-styleable>
 
 
@@ -81,7 +82,6 @@
         <attr name="onSuccessCommand" format="reference" />
         <!--require BindingCommand<CloseableReference<CloseableImage>> See {@link com.kelin.mvvmlight.command.BindingCommand} -->
         <attr name="onFailureCommand" format="reference" />
-
     </declare-styleable>
 
 
@@ -90,7 +90,6 @@
         <attr name="itemView" />
         <!-- require List<ViewModel> bind to ItemView to presentation.-->
         <attr name="observableList" format="reference" />
-
     </declare-styleable>
 
     <declare-styleable name="RecyclerView" parent="AdapterView">
@@ -99,6 +98,8 @@
         <attr name="layoutManager" format="reference" />
         <attr name="itemAnimator" format="reference" />
     </declare-styleable>
+
+
     <declare-styleable name="RadioGroup">
         <attr name="onCheckedChangedCommand" format="reference" />
     </declare-styleable>
@@ -136,8 +137,8 @@
         <attr name="onPageSelectedCommand" format="reference" />
         <!--require BindingCommand<Integer> -->
         <attr name="onPageScrollStateChangedCommand" format="reference" />
-
     </declare-styleable>
+
 
     <declare-styleable name="NestedScrollView">
         <!-- require BindingCommand<NestScrollDataWrapper> -->
@@ -149,10 +150,12 @@
         <attr name="imageUrl" />
     </declare-styleable>
 
+
     <declare-styleable name="ScrollView">
         <!-- require BindingCommand<ScrollDataWrapper> -->
         <attr name="onScrollChangeCommand" />
     </declare-styleable>
+
 
     <declare-styleable name="SwipeRefreshLayout">
         <!-- require BindingCommand -->
@@ -160,12 +163,16 @@
         <attr name="refreshing" format="boolean" />
     </declare-styleable>
 
+
     <declare-styleable name="WebView">
         <!-- require String render to html show in webview-->
         <attr name="render" format="string" />
     </declare-styleable>
+
+
     <!-- 自定义控制事件分发的LinearLayout -->
     <declare-styleable name="ControlDistributeLinearLayout">
         <attr name="distribute_event" format="boolean" />
     </declare-styleable>
+
 </resources>

@@ -1,17 +1,11 @@
 package com.example.z_lib_net;
 
-import com.example.z_lib_base.untils.CommonUtils;
 import com.example.z_lib_net.base.NetworkApi;
-import com.example.z_lib_net.base.NewBaseResponse;
+import com.example.z_lib_net.base.BaseResponse;
 import com.example.z_lib_net.error.ExceptionHandle;
-import com.example.z_lib_net.untils.TecentUtil;
-
-import java.io.IOException;
 
 import io.reactivex.functions.Function;
 import okhttp3.Interceptor;
-import okhttp3.Request;
-import okhttp3.Response;
 
 /**
  * @author puyantao
@@ -47,10 +41,10 @@ public class NewNetworkApi extends NetworkApi {
             @Override
             public T apply(T response) throws Exception {
                 //response中code码不会0 出现错误
-                if (response instanceof NewBaseResponse && ((NewBaseResponse) response).showapiResCode != 0) {
+                if (response instanceof BaseResponse && ((BaseResponse) response).code != 0) {
                     ExceptionHandle.ServerException exception = new ExceptionHandle.ServerException();
-                    exception.code = ((NewBaseResponse) response).showapiResCode;
-                    exception.message = ((NewBaseResponse) response).showapiResError != null ? ((NewBaseResponse) response).showapiResError : "";
+                    exception.code = ((BaseResponse) response).code;
+                    exception.message = ((BaseResponse) response).message != null ? ((BaseResponse) response).message : "";
                     throw exception;
                 }
                 return response;

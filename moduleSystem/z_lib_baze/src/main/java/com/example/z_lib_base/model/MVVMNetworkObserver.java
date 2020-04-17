@@ -1,5 +1,10 @@
 package com.example.z_lib_base.model;
-
+/**
+ *
+ * @description
+ * @author puyantao
+ * @date 2020/4/17 9:52
+ */
 public interface MVVMNetworkObserver<F> {
     /**
      * 成功

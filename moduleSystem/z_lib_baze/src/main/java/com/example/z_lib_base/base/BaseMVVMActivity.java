@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.z_lib_base.bus.Messenger;
-import com.example.z_lib_base.intercepter.IBaseView;
+import com.example.z_lib_base.base.intercepter.IBaseView;
 import com.example.z_lib_base.widget.LoadingDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 

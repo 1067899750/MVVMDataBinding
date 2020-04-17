@@ -27,4 +27,25 @@ public interface LocalDataSource {
      * 获取用户密码
      */
     String getPassword();
+
+
+    /**
+     *  保存电话
+     */
+    void saveMobile(String mobile);
+
+    /**
+     * 获取电话
+     * @return
+     */
+    String getMobile();
+
 }
+
+
+
+
+
+
+
+

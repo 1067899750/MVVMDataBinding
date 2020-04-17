@@ -15,7 +15,6 @@ import androidx.databinding.BindingAdapter;
  * @create 2020/4/15 13:35
  */
 public class ViewAdapter {
-
     @BindingAdapter(value = {"onNavigationItemSelected"}, requireAll = false)
     public static void onNavigationItemSelected(BottomNavigationView view, BindingCommand command){
         view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

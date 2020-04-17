@@ -1,6 +1,6 @@
 package com.example.z_lib_base.base;
 
-import com.example.z_lib_base.intercepter.IModel;
+import com.example.z_lib_base.base.intercepter.IModel;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

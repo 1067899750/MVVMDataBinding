@@ -1,41 +1,37 @@
 package com.example.z_module_news.headlinenews;
 
-import com.example.z_lib_net.base.NewBaseResponse;
+import com.example.z_lib_net.base.BaseResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-import java.util.List;
-
 /**
- *
- * @description
  * @author puyantao
+ * @description
  * @date 2020/4/16 9:55
  */
-public class NewsChannelsBean extends NewBaseResponse {
-    @SerializedName("showapi_res_body")
+public class NewsChannelsBean extends BaseResponse {
+    @SerializedName("data")
     @Expose
-    public ShowapiResBody showapiResBody;
+    public NewsDataBean mNewsDataBean;
 
-    public class ChannelList {
-        @SerializedName("channelId")
+    public class NewsDataBean {
+        @SerializedName("payTotal")
         @Expose
-        public String channelId;
-        @SerializedName("name")
+        public Integer payTotal;
+        @SerializedName("incomeTotal")
         @Expose
-        public String name;
+        public Integer incomeTotal;
+        @SerializedName("yearBorrowTotal")
+        @Expose
+        public String yearBorrowTotal;
+        @SerializedName("bidFixedTotal")
+        @Expose
+        public String bidFixedTotal;
+        @SerializedName("bidFinanaceTotal")
+        @Expose
+        public String bidFinanaceTotal;
     }
 
-    public class ShowapiResBody {
-        @SerializedName("totalNum")
-        @Expose
-        public Integer totalNum;
-        @SerializedName("ret_code")
-        @Expose
-        public Integer retCode;
-        @SerializedName("channelList")
-        @Expose
-        public List<ChannelList> channelList = null;
-    }
+
 }

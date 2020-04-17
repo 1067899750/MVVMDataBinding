@@ -51,4 +51,14 @@ public class LocalDataSourceImpl implements LocalDataSource {
     public String getPassword() {
         return SPUtils.getInstance().getString("password");
     }
+
+    @Override
+    public void saveMobile(String mobile) {
+        SPUtils.getInstance().put("mobile", mobile);
+    }
+
+    @Override
+    public String getMobile() {
+        return SPUtils.getInstance().getString("mobile");
+    }
 }

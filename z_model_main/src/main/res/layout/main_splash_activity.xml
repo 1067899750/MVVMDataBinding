@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:binding="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="SplashActivityBinding">
+        <import type="com.example.z_model_main.R"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.z_model_main.viewmodel.SplashViewModel" />
+    </data>
+    <RelativeLayout
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+</layout>
