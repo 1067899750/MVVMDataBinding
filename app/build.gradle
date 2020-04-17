@@ -141,7 +141,7 @@ android {
 
     /**********************************多环境打包设置开始******************************************/
     productFlavors {
-        //开发环境
+        //APP1
         develop {
             dimension "versionCode"
             buildConfigField "int", "ENV_TYPE", "1"
@@ -150,7 +150,7 @@ android {
             versionCode rootProject.ext["develop"]["version_code"]
             versionName rootProject.ext["develop"]["version_name"]
         }
-        //生产环境
+        //APP2
         check {
             dimension "versionCode"
             buildConfigField "int", "ENV_TYPE", "2"
@@ -160,7 +160,7 @@ android {
             versionName rootProject.ext["check"]["version_name"]
 
         }
-        //生产环境
+        //APP3
         product {
             dimension "versionCode"
             buildConfigField "int", "ENV_TYPE", "3"
