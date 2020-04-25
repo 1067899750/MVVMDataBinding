@@ -117,9 +117,11 @@ public class AreaMainFragment extends BaseMVVMFragment<AreaMainFragmentBinding, 
         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
         newFragment = createNewInstance(fragmentId);
         if (oldFragment != null && oldFragment.isAdded()){
+            if (fragmentId.equals(oldFragment.getTag())){
+                return;
+            }
             mFragmentTransaction.remove(oldFragment);
         }
-        mFragmentManager.getBackStackEntryCount();
         mFragmentTransaction.add(R.id.fl_content, newFragment, fragmentId);
         oldFragment = newFragment;
         mFragmentTransaction.commitAllowingStateLoss();
