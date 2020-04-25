@@ -1,8 +1,13 @@
 package com.example.z_module_area.viewmodel;
 
 import android.app.Application;
+import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +22,10 @@ import com.baidu.mapapi.model.LatLng;
 import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_base.bus.event.SingleLiveEvent;
 import com.example.z_module_area.AreaFragmentViewModel;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * @author puyantao
@@ -48,12 +57,42 @@ public class AreaTwoViewModel extends BaseViewModel {
 
 
     /**
+     * 将经纬度转换成中文地址
+     *
+     * @param location
+     * @return
+     */
+    private String getLocationAddress(BDLocation location, Context context) {
+        String add = "";
+        Geocoder geoCoder = new Geocoder(context, Locale.CHINESE);
+        try {
+            List<Address> addresses = geoCoder.getFromLocation(
+                    location.getLatitude(), location.getLongitude(),
+                    1);
+            Address address = addresses.get(0);
+            Toast.makeText(context, address.toString(), Toast.LENGTH_SHORT).show();
+            // Address[addressLines=[0:"中国",1:"北京市海淀区",2:"华奥饭店公司写字间中关村创业大街"]latitude=39.980973,hasLongitude=true,longitude=116.301712]
+            int maxLine = address.getMaxAddressLineIndex();
+            if (maxLine >= 2) {
+                add = address.getAddressLine(1) + address.getAddressLine(2);
+            } else {
+                add = address.getAddressLine(1);
+            }
+        } catch (IOException e) {
+            add = "";
+            e.printStackTrace();
+        }
+        return add;
+    }
+
+    /**
      * 位置信息
      *
      * @param location
      * @return
      */
-    public String setLocationMessage(BDLocation location) {
+    public String setLocationMessage(BDLocation location, Context context) {
+        getLocationAddress(location, context);
         // TODO Auto-generated method stub
         if (null != location && location.getLocType() != BDLocation.TypeServerError) {
             int tag = 1;

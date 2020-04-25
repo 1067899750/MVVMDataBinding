@@ -2,6 +2,7 @@ package com.example.z_module_area.fragment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -110,6 +111,8 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
         mBaiduMap.setMyLocationEnabled(true);
         mNotifyLister = new NotifyLister();
         mLocationClient.start();
+
+
     }
 
     @Override
@@ -148,7 +151,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
         BDLocation location = new BDLocation();
         location.setLatitude(mlatitude);
         location.setLongitude(mlongitude);
-        Toast.makeText(mContext, viewModel.setLocationMessage(location), Toast.LENGTH_LONG).show();
+        viewModel.setLocationMessage(location, mContext);
     }
 
     @Override
@@ -236,7 +239,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
 //            // 设置定位数据
 //            mBaiduMap.setMyLocationData(locData);
 //
-            Toast.makeText(mContext, viewModel.setLocationMessage(location), Toast.LENGTH_LONG).show();
+            viewModel.setLocationMessage(location, mContext);
 
             if (isFirstLoc) {
                 isFirstLoc = false;
