@@ -14,12 +14,13 @@
         tools:context=".UserMainFragment">
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
             android:textSize="20dp"
-            android:text="@string/user_hello_blank_fragment" />
+            android:onClick="@{viewModel.onDateClick}"
+            android:text="@{viewModel.dateStr}" />
 
     </FrameLayout>
 </layout>
