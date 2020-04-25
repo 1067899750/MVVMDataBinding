@@ -116,6 +116,7 @@ android {
                                                          app_package     : rootProject.ext[productFlavor]["application_package"],
                                                          "APP_ID"        : rootProject.ext[productFlavor]["app_id_app_key"],
 
+                                                         baidu_app_key   : rootProject.ext[productFlavor]["baidu_app_key"],
                                                          GETUI_APP_ID    : rootProject.ext[productFlavor]["getui_app_id_debug"],
                                                          GETUI_APP_KEY   : rootProject.ext[productFlavor]["getui_app_key_debug"],
                                                          GETUI_APP_SECRET: rootProject.ext[productFlavor]["getui_app_secret_debug"],]
@@ -125,6 +126,7 @@ android {
                                                          app_package     : rootProject.ext[productFlavor]["application_package"],
                                                          "APP_ID"        : rootProject.ext[productFlavor]["app_id_app_key"],
 
+                                                         baidu_app_key   : rootProject.ext[productFlavor]["baidu_app_key"],
                                                          GETUI_APP_ID    : rootProject.ext[productFlavor]["getui_app_id_debug"],
                                                          GETUI_APP_KEY   : rootProject.ext[productFlavor]["getui_app_key_debug"],
                                                          GETUI_APP_SECRET: rootProject.ext[productFlavor]["getui_app_secret_debug"],]
@@ -194,7 +196,7 @@ android {
         additionalParameters += '--minimal-main-dex'
     }
 
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -203,7 +205,6 @@ android {
     dataBinding {
         enabled true
     }
-
 
 
 }

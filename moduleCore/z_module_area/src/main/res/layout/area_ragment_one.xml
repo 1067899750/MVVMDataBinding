@@ -13,12 +13,11 @@
         android:layout_height="match_parent"
         tools:context=".fragment.AreaOneFragment">
 
-        <TextView
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="AreaOneFragment" />
+            android:clickable="true"/>
 
     </RelativeLayout>
 </layout>

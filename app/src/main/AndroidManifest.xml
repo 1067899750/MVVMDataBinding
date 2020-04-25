@@ -11,6 +11,19 @@
         android:name=".DataApplication"
         android:theme="@style/AppTheme">
 
+
+        <!-- 声明service组件 -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
+        <!-- AK鉴权 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="${baidu_app_key}" />
+        <!-- http://lbsyun.baidu.com/apiconsole/key -->
+
+
         <!-- 全面屏适配 -->
         <meta-data
             android:name="android.max_aspect"

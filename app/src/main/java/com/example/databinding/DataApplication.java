@@ -3,14 +3,18 @@ package com.example.databinding;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Vibrator;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.example.z_lib_base.base.BaseApplication;
 import com.example.z_lib_base.untils.CommonUtils;
 import com.example.z_lib_common.bankres.ConfigPermission;
 import com.example.z_lib_common.multipackage.EnvType;
 import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_base.untils.LocationService;
 import com.example.z_lib_net.untils.NetUtils;
 
 import androidx.multidex.MultiDex;
@@ -38,6 +42,9 @@ public class DataApplication extends BaseApplication {
         NetUtils.init(this, getResources().getString(R.string.base_url));
         //出书画Log
         XLog.init(BuildConfig.LOG_DEBUG, "--logApp-->");
+
+
+
         //初始化多环境打包
         initMultiPackage();
         getOtherMessage();

@@ -9,18 +9,86 @@
             type="com.example.z_module_area.viewmodel.AreaTwoViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".fragment.AreaTwoFragment">
 
 
         <TextView
+            android:id="@+id/guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="请在地图中选择围栏中心点"
+            android:textColor="#FF0000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="围栏半径:"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:id="@+id/radius"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:inputType="numberDecimal"
+                    android:text="50"></EditText>
+
+                <Button
+                    android:id="@+id/fence"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:onClick="@{(view)->viewModel.onChangeClick(view, 1)}"
+                    android:text="添加围栏"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/start_notify"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.2"
+                    android:onClick="@{(view)->viewModel.onChangeClick(view,2)}"
+                    android:text="开启提醒"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="AreaTwoFragment"
-            android:textSize="20dp" />
+            android:layout_marginTop="10dp" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </layout>
+
+
+
+
+
+
+
+
+
+
+
+

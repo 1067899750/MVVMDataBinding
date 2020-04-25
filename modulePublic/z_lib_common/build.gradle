@@ -47,7 +47,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     api project(path: ':moduleSystem:z_lib_baze')
 
-
     //arouter
     api rootProject.ext.dependencies.arouter
     //banner 现无限轮询

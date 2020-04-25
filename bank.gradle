@@ -21,6 +21,7 @@ ext {
             getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
             getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
             getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+            baidu_app_key         : "ytSlpol8GLkbxUWKrPA5yrOEQ7vOEWoV",
 
 
     ]
@@ -47,6 +48,7 @@ ext {
             getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
             getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
             getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+            baidu_app_key         : "ytSlpol8GLkbxUWKrPA5yrOEQ7vOEWoV",
     ]
 
     product = [
@@ -70,6 +72,7 @@ ext {
             getui_app_id_debug    : "HoaFkqACor50mB5SoBpV48",
             getui_app_key_debug   : "3lH7FA0RRSAX9S9TdScyB1",
             getui_app_secret_debug: "n5eHACemWp8vk3lBnx7yt3",
+            baidu_app_key         : "NimaaV7ERnflo9ufBIO5ozmrIDl76NsH",
     ]
 
 
