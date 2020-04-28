@@ -200,14 +200,25 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
             }
         });
         //关闭界面
-        viewModel.getUC().observe(this, new Observer() {
+        viewModel.getUC().getFinishEvent().observe(this, new Observer() {
             @Override
             public void onChanged(Object o) {
                 finish();
             }
         });
+        //带参关闭界面
+        viewModel.getUC().getFinishParamsEvent().observe(this, new Observer<Map<String, Object>>() {
+            @Override
+            public void onChanged(@Nullable Map<String, Object> stringObjectMap) {
+                Bundle bundle = (Bundle) stringObjectMap.get(BaseViewModel.ParameterField.BUNDLE);
+                Intent intent = getIntent();
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
         //关闭上一层
-        viewModel.getUC().observe(this, new Observer() {
+        viewModel.getUC().getOnBackPressedEvent().observe(this, new Observer() {
             @Override
             public void onChanged(Object o) {
                 onBackPressed();

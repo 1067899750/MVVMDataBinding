@@ -2,6 +2,7 @@ package com.example.z_lib_base.base;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -154,6 +155,17 @@ public abstract class BaseMVVMFragment<V extends ViewDataBinding, VM extends Bas
         viewModel.getUC().getFinishEvent().observe(this, new Observer<Void>() {
             @Override
             public void onChanged(@Nullable Void v) {
+                getActivity().finish();
+            }
+        });
+        //带参关闭界面
+        viewModel.getUC().getFinishParamsEvent().observe(this, new Observer<Map<String, Object>>() {
+            @Override
+            public void onChanged(@Nullable Map<String, Object> stringObjectMap) {
+                Bundle bundle = (Bundle) stringObjectMap.get(BaseViewModel.ParameterField.BUNDLE);
+                Intent intent = getActivity().getIntent();
+                intent.putExtras(bundle);
+                getActivity().setResult(Activity.RESULT_OK, intent);
                 getActivity().finish();
             }
         });

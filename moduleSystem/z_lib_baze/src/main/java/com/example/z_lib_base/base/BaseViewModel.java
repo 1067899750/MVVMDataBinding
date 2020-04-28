@@ -203,6 +203,21 @@ public abstract class BaseViewModel<M extends BaseModel> extends AndroidViewMode
         uc.finishEvent.call();
     }
 
+
+    /**
+     * 关闭页面
+     *
+     * @param bundle 跳转所携带的信息
+     */
+    public void finish(Bundle bundle) {
+        Map<String, Object> params = new HashMap<>();
+        if (bundle != null) {
+            params.put(ParameterField.BUNDLE, bundle);
+        }
+        getUC().getFinishParamsEvent().postValue(params);
+    }
+
+
     /**
      * 返回上一层
      */
@@ -219,6 +234,7 @@ public abstract class BaseViewModel<M extends BaseModel> extends AndroidViewMode
         private SingleLiveEvent<Void> finishEvent;
         private SingleLiveEvent<Void> onBackPressedEvent;
         private SingleLiveEvent<String> showToastEvent;
+        private SingleLiveEvent<Map<String, Object>> finishParamsEvent;
 
         public SingleLiveEvent<String> getShowDialogEvent() {
             return showDialogEvent = createLiveData(showDialogEvent);
@@ -247,6 +263,11 @@ public abstract class BaseViewModel<M extends BaseModel> extends AndroidViewMode
         MutableLiveData<String> getShowToastEvent() {
             return showToastEvent = createLiveData(showToastEvent);
         }
+
+        MutableLiveData<Map<String, Object>> getFinishParamsEvent() {
+            return finishParamsEvent = createLiveData(finishParamsEvent);
+        }
+
 
         private <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
             if (liveData == null) {
