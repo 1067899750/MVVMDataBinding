@@ -3,12 +3,10 @@ package com.example.z_module_news.headlinenews;
 import android.app.Application;
 
 import com.example.z_lib_base.base.BaseModel;
-import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_base.bus.command.BindingAction;
 import com.example.z_lib_base.bus.command.BindingCommand;
-import com.example.z_lib_base.model.PagingResult;
-import com.example.z_lib_base.untils.ToastUtils;
-import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_base.utils.ToastUtils;
+import com.example.z_lib_base.utils.log.XLog;
 import com.example.z_lib_common.model.NetTagUtil;
 import com.example.z_lib_common.model.NetWorkViewModel;
 import com.example.z_lib_net.base.BaseResponse;

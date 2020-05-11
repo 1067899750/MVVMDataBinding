@@ -9,12 +9,11 @@ import androidx.lifecycle.Observer;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.z_lib_base.base.BaseMVVMActivity;
-import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_base.utils.log.XLog;
 import com.example.z_lib_common.bankres.BankResFactory;
 import com.example.z_model_main.databinding.MainActivityBinding;
 import com.example.z_model_main.viewmodel.MainViewModel;
@@ -45,7 +44,7 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
 
         updateFragment(0);
         //init toolBar
-        setSupportActionBar(binding.toolBar);
+        setSupportActionBar(mBinding.toolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.main_menu_home));
@@ -56,16 +55,16 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
          * @param view
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            viewModel.disableShiftMode(binding.bottomView);
+            mViewModel.disableShiftMode(mBinding.bottomView);
         }
 
-        binding.bottomView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
-        viewModel.showBadgeView(this, binding.bottomView, 3, 5);
+        mBinding.bottomView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        mViewModel.showBadgeView(this, mBinding.bottomView, 3, 5);
     }
 
     @Override
     public void initViewObservable() {
-        viewModel.uc.pNavigationPosition.observe(this, new Observer<MenuItem>() {
+        mViewModel.uc.pNavigationPosition.observe(this, new Observer<MenuItem>() {
             @Override
             public void onChanged(MenuItem item) {
                 int itemId = item.getItemId();
@@ -89,7 +88,7 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
     }
 
     public void updateFragment(int position) {
-        String baseFragment = viewModel.getFragment(position);
+        String baseFragment = mViewModel.getFragment(position);
         switchFragment(baseFragment);
     }
 
@@ -102,12 +101,12 @@ public class MainActivity extends BaseMVVMActivity<MainActivityBinding, MainView
         FragmentManager mFragmentManager = getSupportFragmentManager();
         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
         mFragmentManager.getBackStackEntryCount();
-        for (int i = 0; i < viewModel.mFragments.size(); i++) {
-            String tag = String.valueOf(viewModel.mFragments.get(i));
+        for (int i = 0; i < mViewModel.mFragments.size(); i++) {
+            String tag = String.valueOf(mViewModel.mFragments.get(i));
             Fragment fragment = mFragmentManager.findFragmentByTag(tag);
-            if (viewModel.mFragments.get(i) == fragmentId) {
+            if (mViewModel.mFragments.get(i) == fragmentId) {
                 if (fragment == null || !fragment.isAdded()) {
-                    fragment = viewModel.createNewInstance(fragmentId);
+                    fragment = mViewModel.createNewInstance(fragmentId);
                     mFragmentTransaction.add(R.id.fl_content, fragment, tag);
                 } else {
                     mFragmentTransaction.show(fragment);

@@ -3,18 +3,14 @@ package com.example.databinding;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.os.Vibrator;
 import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.baidu.mapapi.CoordType;
-import com.baidu.mapapi.SDKInitializer;
 import com.example.z_lib_base.base.BaseApplication;
-import com.example.z_lib_base.untils.CommonUtils;
+import com.example.z_lib_base.utils.CommonUtils;
 import com.example.z_lib_common.bankres.ConfigPermission;
 import com.example.z_lib_common.multipackage.EnvType;
-import com.example.z_lib_base.untils.log.XLog;
-import com.example.z_lib_base.untils.LocationService;
+import com.example.z_lib_base.utils.log.XLog;
 import com.example.z_lib_net.untils.NetUtils;
 
 import androidx.multidex.MultiDex;

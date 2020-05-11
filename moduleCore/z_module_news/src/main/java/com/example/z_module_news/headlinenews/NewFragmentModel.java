@@ -1,18 +1,12 @@
 package com.example.z_module_news.headlinenews;
 
 import com.example.z_lib_base.base.BaseModel;
-import com.example.z_lib_base.model.IBaseModelListener;
-import com.example.z_lib_base.model.MVVMNetworkObserver;
 
-import com.example.z_lib_base.untils.log.XLog;
 import com.example.z_lib_common.model.NetTagUtil;
 import com.example.z_lib_net.NewNetworkApi;
 import com.example.z_lib_net.base.BaseObserver;
 import com.example.z_lib_net.base.BaseResponse;
 import com.example.z_module_news.app.NewsApiInterface;
-import com.example.z_module_news.bean.NewsChannelsBean;
-import com.orhanobut.logger.Logger;
-
 
 
 /**

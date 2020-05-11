@@ -1,10 +1,9 @@
 package com.example.z_lib_net.intercepter;
 
 import android.content.Context;
-import android.util.Log;
 
 
-import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_base.utils.log.XLog;
 import com.example.z_lib_net.untils.NetUtils;
 
 import java.io.IOException;

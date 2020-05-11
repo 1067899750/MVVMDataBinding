@@ -14,11 +14,8 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.example.z_lib_base.base.BaseConniveViewModel;
 import com.example.z_lib_base.base.BaseMVVMFragment;
-import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_common.arouter.ARouterUtils;
-import com.example.z_lib_common.model.NetWorkViewModel;
 import com.example.z_lib_common.utils.ValueUtil;
 import com.example.z_module_user.databinding.UserMainFragmentBinding;
 
@@ -78,10 +75,10 @@ public class UserMainFragment extends BaseMVVMFragment<UserMainFragmentBinding, 
     @Override
     public void initViewObservable() {
         super.initViewObservable();
-        viewModel.uc.dateChangeTool.observe(this, new Observer<Object>() {
+        mViewModel.uc.dateChangeTool.observe(this, new Observer<Object>() {
             @Override
             public void onChanged(Object o) {
-                if (ValueUtil.isStrEmpty(viewModel.dateStr.get())){
+                if (ValueUtil.isStrEmpty(mViewModel.dateStr.get())){
                     emptyDataChoose();
                 } else {
                     hasDataChoose();
@@ -108,7 +105,7 @@ public class UserMainFragment extends BaseMVVMFragment<UserMainFragmentBinding, 
              */
             @Override
             public void onDateSet(DatePicker view, int myyear, int monthOfYear, int dayOfMonth) {
-                viewModel.dateStr.set(myyear + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                mViewModel.dateStr.set(myyear + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
             }
         }, year, month, day);
         //显示DatePickerDialog组件
@@ -117,7 +114,7 @@ public class UserMainFragment extends BaseMVVMFragment<UserMainFragmentBinding, 
 
     private void hasDataChoose() {
         try {
-            String[] dates =  viewModel.dateStr.get().split("[-]");
+            String[] dates =  mViewModel.dateStr.get().split("[-]");
             //获取Calendar对象中的年
             int year = Integer.valueOf(dates[0]);
             //获取Calendar对象中的月
@@ -133,7 +130,7 @@ public class UserMainFragment extends BaseMVVMFragment<UserMainFragmentBinding, 
                  */
                 @Override
                 public void onDateSet(DatePicker view, int myyear, int monthOfYear, int dayOfMonth) {
-                    viewModel.dateStr.set(myyear + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                    mViewModel.dateStr.set(myyear + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                 }
             }, year, month, day);
             //显示DatePickerDialog组件

@@ -3,7 +3,7 @@ package com.example.z_lib_net.base;
 
 import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.model.MVVMNetworkObserver;
-import com.example.z_lib_base.untils.log.XLog;
+import com.example.z_lib_base.utils.log.XLog;
 import com.example.z_lib_net.error.ExceptionHandle;
 
 import io.reactivex.Observer;

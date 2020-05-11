@@ -2,7 +2,7 @@ package com.example.z_lib_common.action.data;
 
 
 import com.example.z_lib_common.intercepter.LocalDataSource;
-import com.example.z_lib_base.untils.SPUtils;
+import com.example.z_lib_base.utils.SPUtils;
 
 /**
  *

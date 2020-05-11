@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="BookAssetsDetailMapActivityBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.z_module_service.viewmodel.BookAssetsDetailMapViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.BookAssetsMapActivity">
+
+        <RelativeLayout
+            android:id="@+id/title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:background="#00FFFFFF"
+                android:paddingRight="10dp"
+                android:text="保存"
+                android:textColor="#E05F65"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmap_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/title_rl"
+            android:clickable="true" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/center_view"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mall_address_location_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/center_view"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/address_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/title_rl"
+            app:cardCornerRadius="25dp"
+            app:cardBackgroundColor="#EAECEE"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingBottom="1dp"
+            app:contentPaddingLeft="1dp"
+            app:contentPaddingRight="1dp">
+
+            <RelativeLayout
+                android:id="@+id/address_rL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/service_shape_map_white_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/address_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toLeftOf="@id/search_address_tv"
+                    android:background="#00000000"
+                    android:paddingBottom="9dp"
+                    android:paddingTop="9dp"
+                    android:textColor="#333333"
+                    android:singleLine="true"
+                    android:layout_centerVertical="true"
+                    android:textSize="16sp"
+                    tools:text="上海浦东新区张江城" />
+
+                <TextView
+                    android:id="@+id/search_address_tv"
+                    android:layout_width="65dp"
+                    android:layout_height="50dp"
+                    android:paddingRight="15dp"
+                    android:layout_alignParentRight="true"
+                    android:background="#00000000"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="搜索"
+                    android:textColor="#666666"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.isShowDetailList?View.VISIBLE:View.GONE}"
+            android:background="#20000000"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/address_card"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="15dp"
+            android:visibility="@{viewModel.isShowDetailList?View.VISIBLE:View.GONE}"
+
+            app:cardCornerRadius="7dp"
+            app:cardBackgroundColor="#EAECEE"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingBottom="1dp"
+            app:contentPaddingLeft="1dp"
+            app:contentPaddingRight="1dp">
+            <LinearLayout
+                android:id="@+id/touch_line"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/service_shape_book_white_bg"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/map_list_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+</layout>
+
+
+
+
+
+
+
+
+
+
+
+
+

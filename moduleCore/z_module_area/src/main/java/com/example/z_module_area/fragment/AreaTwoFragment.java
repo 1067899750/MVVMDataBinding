@@ -2,7 +2,6 @@ package com.example.z_module_area.fragment;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,13 +12,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
-import com.baidu.location.BDNotifyListener;
 import com.baidu.location.LocationClient;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -30,7 +27,6 @@ import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
-import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.Stroke;
 import com.baidu.mapapi.model.LatLng;
@@ -100,7 +96,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     @Override
     public void initData() {
         super.initData();
-        mBaiduMap = binding.mapView.getMap();
+        mBaiduMap = mBinding.mapView.getMap();
         mBaiduMap.setOnMapClickListener(this);
         // 初始化定位服务
         mLocationClient = new LocationClient(mContext);
@@ -118,7 +114,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     @Override
     public void initViewObservable() {
         super.initViewObservable();
-        viewModel.uc.onChangeFragment.observe(this, new Observer<Integer>() {
+        mViewModel.uc.onChangeFragment.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 if (integer == 1) {
@@ -143,15 +139,15 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
         }
         mlatitude = latLng.latitude;
         mlongitude = latLng.longitude;
-        binding.guide.setText("纬度:" + mlatitude + "经度:" + mlongitude);
-        binding.guide.setTextColor(Color.RED);
+        mBinding.guide.setText("纬度:" + mlatitude + "经度:" + mlongitude);
+        mBinding.guide.setTextColor(Color.RED);
         MarkerOptions ooA = new MarkerOptions().position(latLng).icon(bd).zIndex(9).draggable(true);
         mMarker = (Marker) mBaiduMap.addOverlay(ooA);
 
         BDLocation location = new BDLocation();
         location.setLatitude(mlatitude);
         location.setLongitude(mlongitude);
-        viewModel.setLocationMessage(location, mContext);
+        mViewModel.setLocationMessage(location, mContext);
     }
 
     @Override
@@ -170,7 +166,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
             Toast.makeText(mContext, "请点击地图添加中心点坐标", Toast.LENGTH_SHORT).show();
         } else {
             LatLng latLng = new LatLng(mlatitude, mlongitude);
-            int radius = Integer.parseInt(binding.guide.getText().toString());
+            int radius = Integer.parseInt(mBinding.guide.getText().toString());
             // 添加圆
             addCircle(latLng, radius);
         }
@@ -183,41 +179,22 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
      * @param v
      */
     public void starNotifyOnClick() {
-        if (binding.startNotify.getText().toString().equals("开启提醒")) {
+        if (mBinding.startNotify.getText().toString().equals("开启提醒")) {
             if (mlatitude == 0.0d && mlongitude == 0.0d) {
                 Toast.makeText(mContext, "点击地图添加提醒点", Toast.LENGTH_SHORT).show();
             } else {
-                mLocationClient.registerNotify(mNotifyLister);
+                mLocationClient.registerLocationListener(mNotifyLister);
                 mLocationClient.start();
-                binding.startNotify.setText("关闭提醒");
+                mBinding.startNotify.setText("关闭提醒");
             }
         } else {
             if (mNotifyLister != null) {
                 // 取消注册的位置提醒监听
-                mLocationClient.removeNotifyEvent(mNotifyLister);
-                binding.startNotify.setText("开启提醒");
+                mLocationClient.unRegisterLocationListener(mNotifyLister);
+                mBinding.startNotify.setText("开启提醒");
             }
         }
     }
-
-
-    private Handler notifyHandler = new Handler() {
-
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            try {
-                Log.e("fence", "handleMessage: ++");
-                int radius = Integer.parseInt(binding.radius.getText().toString());
-                // 设置位置提醒的点的相关参数，
-                mNotifyLister.SetNotifyLocation(mlatitude, mlongitude, radius, mLocationClient.getLocOption().getCoorType());//4个参数代表要位置提醒的点的坐标，具体含义依次为：纬度，经度，距离范围，坐标系类型(gcj02,gps,bd09,bd09ll)
-
-            } catch (NumberFormatException e) {
-                e.printStackTrace(System.err);
-            }
-        }
-
-    };
 
 
     /**
@@ -239,7 +216,7 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
 //            // 设置定位数据
 //            mBaiduMap.setMyLocationData(locData);
 //
-            viewModel.setLocationMessage(location, mContext);
+            mViewModel.setLocationMessage(location, mContext);
 
             if (isFirstLoc) {
                 isFirstLoc = false;
@@ -249,7 +226,6 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
                 builder.target(ll).zoom(18.0f);
                 mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
-            notifyHandler.sendEmptyMessage(0);
         }
 
     }
@@ -257,16 +233,11 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     /**
      * 位置提醒功能，可供地理围栏需求比较小的开发者使用
      */
-    public class NotifyLister extends BDNotifyListener {
-        /**
-         * 位置提醒回调函数
-         *
-         * @param mlocation 位置坐标
-         * @param distance  当前位置跟设定提醒点的距离
-         */
+    public class NotifyLister extends BDAbstractLocationListener {
+
         @Override
-        public void onNotify(BDLocation mlocation, float distance) {
-            Toast.makeText(mContext, "已到达提醒点范围", Toast.LENGTH_SHORT).show();
+        public void onReceiveLocation(BDLocation bdLocation) {
+
         }
     }
 
@@ -278,12 +249,15 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     public void setCountLocationMaker(BDLocation location) {
         try {
             if (location != null) {
-                double latitude = location.getLatitude();    //获取纬度信息
-                double longitude = location.getLongitude();    //获取经度信息
+                //获取纬度信息
+                double latitude = location.getLatitude();
+                //获取经度信息
+                double longitude = location.getLongitude();
                 LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
                 // 构建Marker图标
                 BitmapDescriptor bitmap = null;
-                bitmap = BitmapDescriptorFactory.fromResource(R.drawable.area_icon_openmap_focuse_mark); // 推算结果
+                // 推算结果
+                bitmap = BitmapDescriptorFactory.fromResource(R.drawable.area_icon_openmap_focuse_mark);
 
                 // 构建MarkerOption，用于在地图上添加Marker
                 OverlayOptions option = new MarkerOptions().position(point).icon(bitmap);
@@ -307,13 +281,13 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
         @Override
         public void onResume () {
             super.onResume();
-            binding.mapView.onResume();
+            mBinding.mapView.onResume();
         }
 
         @Override
         public void onPause () {
             super.onPause();
-            binding.mapView.onPause();
+            mBinding.mapView.onPause();
         }
 
         @Override
@@ -322,12 +296,12 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
             // 释放资源
             bd.recycle();
             // 取消注册的位置提醒监听
-            mLocationClient.removeNotifyEvent(mNotifyLister);
+            mLocationClient.unRegisterLocationListener(mNotifyLister);
             // 停止定位
             mLocationClient.stop();
             // 释放地图资源
             mBaiduMap.clear();
-            binding.mapView.onDestroy();
+            mBinding.mapView.onDestroy();
         }
 
         /**

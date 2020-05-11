@@ -2,13 +2,11 @@ package com.example.z_module_area.fragment;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -24,11 +22,11 @@ import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
 import com.example.z_lib_base.base.BaseApplication;
 import com.example.z_lib_base.base.BaseMVVMFragment;
-import com.example.z_lib_base.untils.Utils;
+import com.example.z_lib_base.utils.LocationService;
+import com.example.z_lib_base.utils.Utils;
 import com.example.z_module_area.BR;
 import com.example.z_module_area.R;
 import com.example.z_module_area.databinding.AreaOneFragmentBinding;
-import com.example.z_lib_base.untils.LocationService;
 import com.example.z_module_area.viewmodel.AreaOneViewModel;
 
 import java.util.LinkedList;
@@ -76,7 +74,7 @@ public class AreaOneFragment extends BaseMVVMFragment<AreaOneFragmentBinding, Ar
     @Override
     public void initData() {
         super.initData();
-        mBaiduMap = binding.mapView.getMap();
+        mBaiduMap = mBinding.mapView.getMap();
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMapStatus(MapStatusUpdateFactory.zoomTo(15));
         locService = ((BaseApplication) getActivity().getApplication()).locationService;
@@ -220,21 +218,21 @@ public class AreaOneFragment extends BaseMVVMFragment<AreaOneFragmentBinding, Ar
         // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         locService.unregisterListener(listener);
         locService.stop();
-        binding.mapView.onDestroy();
+        mBinding.mapView.onDestroy();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
-        binding.mapView.onResume();
+        mBinding.mapView.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         // 在activity执行onPause时执行mMapView. onPause ()，实现地图生命周期管理
-        binding.mapView.onPause();
+        mBinding.mapView.onPause();
     }
 
     /**

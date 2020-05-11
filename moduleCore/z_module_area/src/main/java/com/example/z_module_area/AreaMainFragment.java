@@ -9,9 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.z_lib_base.base.BaseMVVMFragment;
@@ -77,7 +75,7 @@ public class AreaMainFragment extends BaseMVVMFragment<AreaMainFragmentBinding, 
     @Override
     public void initViewObservable() {
         super.initViewObservable();
-        viewModel.uc.onChangeFragment.observe(this, new Observer<Integer>() {
+        mViewModel.uc.onChangeFragment.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 updateFragment(integer);

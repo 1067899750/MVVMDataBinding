@@ -5,8 +5,6 @@ import android.app.Application;
 import com.example.z_lib_base.base.BaseModel;
 import com.example.z_lib_base.base.BaseViewModel;
 import com.example.z_lib_base.model.IBaseModelListener;
-import com.example.z_lib_base.untils.log.XLog;
-import com.example.z_lib_net.base.BaseResponse;
 
 import androidx.annotation.NonNull;
 

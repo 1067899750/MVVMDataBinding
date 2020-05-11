@@ -8,7 +8,7 @@ include ':moduleCore:z_module_user'
 
 include ':modulePublic:z_lib_common'
 
-include ':moduleSystem:z_lib_baze'
+include ':moduleSystem:z_lib_base'
 include ':moduleSystem:z_lib_net'
 
 include ':z_model_main'

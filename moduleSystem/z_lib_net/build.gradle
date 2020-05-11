@@ -61,7 +61,7 @@ dependencies {
     api rootProject.ext.dependencies["adapter-rxjava"]
     api rootProject.ext.dependencies["converter-gson"]
     api rootProject.ext.dependencies.okhttp
-    implementation project(path: ':moduleSystem:z_lib_baze')
+    implementation project(path: ':moduleSystem:z_lib_base')
 
 
 }

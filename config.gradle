@@ -86,7 +86,7 @@ ext {
             "converter-gson"                       : "com.squareup.retrofit2:converter-gson:2.4.0",
             "adapter-rxjava"                       : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
             "PersistentCookieJar"                  : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
-
+            "permission"                           : 'com.yanzhenjie:permission:2.0.3',
 
             //rx 6.0权限请求
             "rxpermissions"                        : "com.github.tbruyelle:rxpermissions:0.10.2",
