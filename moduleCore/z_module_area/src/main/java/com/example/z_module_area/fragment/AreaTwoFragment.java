@@ -19,6 +19,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.BaiduMap.OnMapClickListener;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.CircleOptions;
@@ -41,8 +42,7 @@ import com.example.z_module_area.viewmodel.AreaTwoViewModel;
  * @description
  * @date 2020/4/25 9:03
  */
-public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, AreaTwoViewModel>
-        implements BaiduMap.OnMapClickListener {
+public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, AreaTwoViewModel> {
     private Context mContext;
     private BaiduMap mBaiduMap;
     private LocationClient mLocationClient;
@@ -54,8 +54,71 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     private double mlongitude = 0.0d;
     // 是否首次定位
     boolean isFirstLoc = true;
-    private NotiftLocationListener listener;
     private BitmapDescriptor bd = BitmapDescriptorFactory.fromResource(R.drawable.area_icon_openmap_mark);
+    /**
+     * 定位请求回调接口
+     */
+    private BDAbstractLocationListener listener = new BDAbstractLocationListener() {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            Log.e("fence", "onReceiveLocation");
+            //Receive Location
+            double longtitude = location.getLongitude();
+            double latitude = location.getLatitude();
+            setCountLocationMaker(location);
+//            MyLocationData locData = new MyLocationData.Builder().accuracy(location.getRadius())
+//                    // 此处设置开发者获取到的方向信息，顺时针0-360
+//                    .direction(location.getDirection()).latitude(location.getLatitude())
+//                    .longitude(location.getLongitude()).build();
+//            // 设置定位数据
+//            mBaiduMap.setMyLocationData(locData);
+//
+            mViewModel.setLocationMessage(location, mContext);
+
+            if (isFirstLoc) {
+                isFirstLoc = false;
+                LatLng ll = new LatLng(latitude, longtitude);
+                MapStatus.Builder builder = new MapStatus.Builder();
+                //地圖縮放
+                builder.target(ll).zoom(18.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+            }
+        }
+
+    };
+
+    private OnMapClickListener mOnMapClickListener = new OnMapClickListener() {
+        /**
+         * 地图点击事件获取中心点
+         *
+         * @param latLng 经纬度
+         */
+        @Override
+        public void onMapClick(LatLng latLng) {
+            if (null != mMarker) {
+                mMarker.remove();
+            }
+            mlatitude = latLng.latitude;
+            mlongitude = latLng.longitude;
+            mBinding.guide.setText("纬度:" + mlatitude + "经度:" + mlongitude);
+            mBinding.guide.setTextColor(Color.RED);
+            MarkerOptions ooA = new MarkerOptions().position(latLng).icon(bd).zIndex(9).draggable(true);
+            mMarker = (Marker) mBaiduMap.addOverlay(ooA);
+
+            BDLocation location = new BDLocation();
+            location.setLatitude(mlatitude);
+            location.setLongitude(mlongitude);
+            mViewModel.setLocationMessage(location, mContext);
+        }
+
+        @Override
+        public void onMapPoiClick(MapPoi mapPoi) {
+
+        }
+
+
+    };
 
     public AreaTwoFragment() {
         // Required empty public constructor
@@ -97,10 +160,9 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     public void initData() {
         super.initData();
         mBaiduMap = mBinding.mapView.getMap();
-        mBaiduMap.setOnMapClickListener(this);
+        mBaiduMap.setOnMapClickListener(mOnMapClickListener);
         // 初始化定位服务
         mLocationClient = new LocationClient(mContext);
-        listener = new NotiftLocationListener();
         // 注册 BDAbstractLocationListener 定位监听函数
         mLocationClient.registerLocationListener(listener);
         // 开启定位图层
@@ -117,59 +179,9 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
         mViewModel.uc.onChangeFragment.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-                if (integer == 1) {
-                    addCircleNotifyOnClick();
-                } else if (integer == 2) {
-                    starNotifyOnClick();
-                }
+                starNotifyOnClick();
             }
         });
-    }
-
-
-    /**
-     * 地图点击事件获取中心点
-     *
-     * @param latLng 经纬度
-     */
-    @Override
-    public void onMapClick(LatLng latLng) {
-        if (null != mMarker) {
-            mMarker.remove();
-        }
-        mlatitude = latLng.latitude;
-        mlongitude = latLng.longitude;
-        mBinding.guide.setText("纬度:" + mlatitude + "经度:" + mlongitude);
-        mBinding.guide.setTextColor(Color.RED);
-        MarkerOptions ooA = new MarkerOptions().position(latLng).icon(bd).zIndex(9).draggable(true);
-        mMarker = (Marker) mBaiduMap.addOverlay(ooA);
-
-        BDLocation location = new BDLocation();
-        location.setLatitude(mlatitude);
-        location.setLongitude(mlongitude);
-        mViewModel.setLocationMessage(location, mContext);
-    }
-
-    @Override
-    public void onMapPoiClick(MapPoi mapPoi) {
-
-    }
-
-    /**
-     * 在地图中添加提醒范围
-     *
-     * @param v
-     */
-    public void addCircleNotifyOnClick() {
-        mBaiduMap.clear();
-        if (mlatitude == 0.0d || mlongitude == 0.0d) {
-            Toast.makeText(mContext, "请点击地图添加中心点坐标", Toast.LENGTH_SHORT).show();
-        } else {
-            LatLng latLng = new LatLng(mlatitude, mlongitude);
-            int radius = Integer.parseInt(mBinding.guide.getText().toString());
-            // 添加圆
-            addCircle(latLng, radius);
-        }
     }
 
 
@@ -198,39 +210,6 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
 
 
     /**
-     * 定位请求回调接口
-     */
-    public class NotiftLocationListener extends BDAbstractLocationListener {
-
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            Log.e("fence", "onReceiveLocation");
-            //Receive Location
-            double longtitude = location.getLongitude();
-            double latitude = location.getLatitude();
-            setCountLocationMaker(location);
-//            MyLocationData locData = new MyLocationData.Builder().accuracy(location.getRadius())
-//                    // 此处设置开发者获取到的方向信息，顺时针0-360
-//                    .direction(location.getDirection()).latitude(location.getLatitude())
-//                    .longitude(location.getLongitude()).build();
-//            // 设置定位数据
-//            mBaiduMap.setMyLocationData(locData);
-//
-            mViewModel.setLocationMessage(location, mContext);
-
-            if (isFirstLoc) {
-                isFirstLoc = false;
-                LatLng ll = new LatLng(latitude, longtitude);
-                MapStatus.Builder builder = new MapStatus.Builder();
-                //地圖縮放
-                builder.target(ll).zoom(18.0f);
-                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
-            }
-        }
-
-    }
-
-    /**
      * 位置提醒功能，可供地理围栏需求比较小的开发者使用
      */
     public class NotifyLister extends BDAbstractLocationListener {
@@ -243,7 +222,8 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
 
 
     /**
-     *  設置當前位置 maker
+     * 設置當前位置 maker
+     *
      * @param location
      */
     public void setCountLocationMaker(BDLocation location) {
@@ -272,53 +252,40 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
     }
 
 
-        @Override
-        public void onStop () {
-            // TODO Auto-generated method stub
-            super.onStop();
-        }
-
-        @Override
-        public void onResume () {
-            super.onResume();
-            mBinding.mapView.onResume();
-        }
-
-        @Override
-        public void onPause () {
-            super.onPause();
-            mBinding.mapView.onPause();
-        }
-
-        @Override
-        public void onDestroy () {
-            super.onDestroy();
-            // 释放资源
-            bd.recycle();
-            // 取消注册的位置提醒监听
-            mLocationClient.unRegisterLocationListener(mNotifyLister);
-            // 停止定位
-            mLocationClient.stop();
-            // 释放地图资源
-            mBaiduMap.clear();
-            mBinding.mapView.onDestroy();
-        }
-
-        /**
-         * 在地图中添加提醒范围
-         *
-         * @param latLng 中心点经纬度信息
-         * @param radius 提醒半径
-         */
-        public void addCircle (LatLng latLng,int radius){
-            // 绘制圆
-            OverlayOptions ooCircle = new CircleOptions().fillColor(0x000000FF)
-                    .center(latLng).stroke(new Stroke(5, 0xAA000000))
-                    .radius(radius);
-            mBaiduMap.addOverlay(ooCircle);
-        }
-
+    @Override
+    public void onStop() {
+        // TODO Auto-generated method stub
+        super.onStop();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mBinding.mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mBinding.mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // 释放资源
+        bd.recycle();
+        // 取消注册的位置提醒监听
+        mLocationClient.unRegisterLocationListener(mNotifyLister);
+        // 停止定位
+        mLocationClient.stop();
+        // 释放地图资源
+        mBaiduMap.clear();
+        mBinding.mapView.onDestroy();
+    }
+
+
+}
 
 
 

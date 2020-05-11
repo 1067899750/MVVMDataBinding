@@ -35,30 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="围栏半径:"
-                    android:textColor="#000" />
-
-                <EditText
-                    android:id="@+id/radius"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:inputType="numberDecimal"
-                    android:text="50"></EditText>
-
-                <Button
-                    android:id="@+id/fence"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.2"
-                    android:onClick="@{(view)->viewModel.onChangeClick(view, 1)}"
-                    android:text="添加围栏"
-                    android:textSize="16dp" />
-
                 <Button
                     android:id="@+id/start_notify"
                     android:layout_width="0dp"
