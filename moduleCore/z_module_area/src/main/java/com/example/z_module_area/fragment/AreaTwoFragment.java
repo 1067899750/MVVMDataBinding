@@ -88,6 +88,9 @@ public class AreaTwoFragment extends BaseMVVMFragment<AreaTwoFragmentBinding, Ar
 
     };
 
+    /**
+     * 地图点击监听器
+     */
     private OnMapClickListener mOnMapClickListener = new OnMapClickListener() {
         /**
          * 地图点击事件获取中心点
