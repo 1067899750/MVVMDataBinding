@@ -14,7 +14,7 @@ buildscript {
             url 'https://maven.aliyun.com/repository/public'
         }
         google()
-        jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
         maven {
             url "http://mvn.mob.com/android"
@@ -22,7 +22,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -42,7 +42,7 @@ allprojects {
             url 'https://maven.aliyun.com/repository/public'
         }
         google()
-        jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
         maven {
             url "http://mvn.mob.com/android"
