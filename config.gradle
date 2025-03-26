@@ -1,10 +1,9 @@
 ext {
     //android开发版本配置
     android = [
-            compileSdkVersion: 28,
-            buildToolsVersion: "28.0.3",
-            minSdkVersion    : 16,
-            targetSdkVersion : 28,
+            compileSdkVersion: 34,
+            minSdkVersion    : 24,
+            targetSdkVersion : 34,
 
             applicationId    : "com.example.databinding",
             versionCode      : 1,

@@ -5,7 +5,8 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/MainSplashTheme">
+            android:theme="@style/MainSplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

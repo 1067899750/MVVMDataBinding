@@ -15,7 +15,6 @@ static def buildTime() {
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -75,7 +74,7 @@ android {
         }
 
         debug {
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             //给applicationId添加后缀“.debug”
             applicationIdSuffix ".debug"
             //manifestPlaceholders = [app_icon: "@drawable/launch_beta"]
