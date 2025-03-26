@@ -7,7 +7,6 @@ if (isModule.toBoolean()) {
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         if (isModule.toBoolean()) {
