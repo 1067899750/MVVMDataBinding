@@ -114,7 +114,7 @@ public abstract class BaseMVVMActivity<V extends ViewDataBinding, VM extends Bas
         //解除Messenger注册
         Messenger.getDefault().unregister(mViewModel);
         if (mViewModel != null){
-            mViewModel.registerRxBus();
+            mViewModel.removeRxBus();
         }
         if (mBinding != null){
             mBinding.unbind();
