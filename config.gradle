@@ -25,13 +25,7 @@ ext {
             "recyclerview"            : "androidx.recyclerview:recyclerview:${versions["androidXVersion"]}",
             "cardview"                : "androidx.cardview:cardview:${versions["cardview"]}",
             "material-design"         : "com.google.android.material:material:${versions["androidXVersion"]}",
-
             'recyclerview-v7'         : "com.android.support:recyclerview-v7:${versions["support-version"]}",
-
-
-            'support-v4'              : "com.android.support:support-v4:${versions["support-version"]}",
-            'support-v13'             : "com.android.support:support-v13:${versions["support-version"]}",
-            'support-fragment'        : "com.android.support:support-fragment:${versions["support-version"]}",
             'design'                  : "com.android.support:design:${versions["support-version"]}",
             'animated-vector-drawable': "com.android.support:animated-vector-drawable:${versions["support-version"]}",
             'junit'                   : "junit:junit:${versions["junit-version"]}",
