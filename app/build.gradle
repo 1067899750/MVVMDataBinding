@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 // Create a variable called keystorePropertiesFile, and initialize it to your
 // keystore.properties file, in the rootProject folder.
@@ -9,6 +11,8 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 static def buildTime() {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMddHHmmss")
+    String date = dateFormat.format(System.currentTimeMillis())
     return new Date().format("yyyyMMdd");
 }
 
